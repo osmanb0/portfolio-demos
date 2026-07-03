@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osman — Web Tasarım Portföyü</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Fraunces:opsz,wght@9..144,600;9..144,900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0F1115;--card:#181B22;--ink:#EDEAE4;--mut:#8B8F99;--acc:#5BC0BE}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;padding:0 20px}
+.wrap{max-width:820px;margin:0 auto}
+header{padding:70px 0 50px}
+header .eyebrow{color:var(--acc);font-size:.75rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;margin-bottom:14px}
+header h1{font-family:'Fraunces',serif;font-size:clamp(2rem,7vw,3.4rem);font-weight:900;line-height:1.08}
+header p{color:var(--mut);max-width:52ch;margin-top:16px}
+.grid{display:grid;gap:18px;padding-bottom:30px}
+.card{display:block;background:var(--card);border:1px solid rgba(237,234,228,.08);border-radius:16px;padding:30px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:var(--acc)}
+.card .tag{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);border:1px solid rgba(91,192,190,.35);padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.card h2{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;margin-bottom:8px}
+.card p{color:var(--mut);font-size:.92rem}
+.card .go{margin-top:16px;font-size:.85rem;font-weight:800;color:var(--acc)}
+.cta{background:linear-gradient(135deg,#16323F,#10252E);border:1px solid rgba(91,192,190,.25);border-radius:16px;padding:34px 30px;margin:14px 0 60px;text-align:center}
+.cta h2{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:8px}
+.cta p{color:var(--mut);font-size:.92rem;margin-bottom:20px}
+.cta a{display:inline-block;background:var(--acc);color:#0F1115;font-weight:800;text-decoration:none;padding:13px 28px;border-radius:999px;font-size:.9rem}
+footer{text-align:center;color:var(--mut);font-size:.78rem;padding-bottom:30px}
+a:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Web Tasarım · 24 Saatte Teslim</div>
+    <h1>İşletmenizin yüzü,<br>tek sayfada.</h1>
+    <p>Küçük işletmeler için hızlı, modern ve mobil uyumlu tanıtım siteleri tasarlıyorum. Aşağıdaki demolara telefonunuzdan bakın — müşterileriniz de öyle bakacak.</p>
+  </header>
+
+  <div class="grid">
+    <a class="card" href="kafe/">
+      <span class="tag">Kafe · Tanıtım Sitesi</span>
+      <h2>Kavella Kahve</h2>
+      <p>Üçüncü dalga kahveci için sıcak, karakterli tek sayfa: menü, hikâye, konum ve WhatsApp iletişim.</p>
+      <div class="go">Demoyu Gör →</div>
+    </a>
+    <a class="card" href="berber/">
+      <span class="tag">Berber · Randevu Odaklı</span>
+      <h2>Demir Berber</h2>
+      <p>İki kuşaklık berber dükkânı için koyu, vintage tarz: fiyat panosu, ustalar ve WhatsApp randevu.</p>
+      <div class="go">Demoyu Gör →</div>
+    </a>
+    <a class="card" href="qr-menu/">
+      <span class="tag">Restoran · QR Menü</span>
+      <h2>Meşale Ocakbaşı</h2>
+      <p>Masadaki QR koddan açılan, kategori sekmeli mobil menü. Baskı maliyeti yok, fiyat güncellemesi anında.</p>
+      <div class="go">Demoyu Gör →</div>
+    </a>
+  </div>
+
+  <div class="cta">
+    <h2>Siz de ister misiniz?</h2>
+    <p>Sitenizi 24 saat içinde teslim ediyorum. Alan adı ve yayınlama dahil paketler mevcut.</p>
+    <a href="https://bionluk.com" rel="noopener">Bionluk'tan Sipariş Verin</a>
+  </div>
+
+  <footer>© 2026 — Tüm demolar hayali markalar için tasarlanmıştır.</footer>
+</div>
+</body>
+</html>

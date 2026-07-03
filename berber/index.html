@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demir Berber — 1987'den Beri Usta İşi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --coal:#14151A; --coal-2:#1D1F26; --bone:#EAE6DD; --red:#B33A3A; --steel:#8A93A6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--coal);color:var(--bone);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+
+/* barber pole şerit */
+.pole{height:10px;background:repeating-linear-gradient(-45deg,var(--red) 0 16px,var(--bone) 16px 32px,#3E5C76 32px 48px,var(--bone) 48px 64px)}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;position:sticky;top:0;background:rgba(20,21,26,.92);backdrop-filter:blur(8px);z-index:50;border-bottom:1px solid rgba(234,230,221,.08)}
+nav .logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.25rem;color:var(--bone);text-decoration:none;letter-spacing:.08em}
+nav .logo span{color:var(--red)}
+nav a.book{background:var(--red);color:#fff;text-decoration:none;padding:9px 20px;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+nav a.book:hover{background:#973030}
+
+.hero{padding:80px 24px 90px;max-width:1000px;margin:0 auto;position:relative}
+.hero .est{display:inline-block;border:1px solid var(--steel);color:var(--steel);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;padding:6px 14px;margin-bottom:24px}
+.hero h1{font-size:clamp(2.4rem,9.2vw,6.5rem);font-weight:700;line-height:1}
+.hero h1 .out{color:transparent;-webkit-text-stroke:1.5px var(--bone)}
+.hero p{max-width:44ch;margin-top:24px;color:var(--steel);font-size:1rem}
+.hero .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 30px;text-decoration:none;font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:#fff}
+.btn-ghost{border:1.5px solid rgba(234,230,221,.35);color:var(--bone)}
+
+section{padding:72px 24px}
+.wrap{max-width:1000px;margin:0 auto}
+.sec-eyebrow{color:var(--red);font-size:.75rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:36px}
+
+/* FİYAT TARİFESİ — eski berber panosu */
+.tarife{background:var(--coal-2);border:1px solid rgba(234,230,221,.1);padding:40px 32px;max-width:640px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid rgba(234,230,221,.08)}
+.row:last-child{border-bottom:none}
+.row .ad{font-weight:600}
+.row .ad small{display:block;color:var(--steel);font-weight:400;font-size:.78rem;text-transform:none;letter-spacing:0}
+.row .dots{flex:1;border-bottom:1px dotted rgba(234,230,221,.25);transform:translateY(-5px)}
+.row .f{font-family:'Oswald',sans-serif;font-size:1.15rem;color:var(--red);font-weight:700}
+
+/* USTALAR */
+.ustalar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.usta{background:var(--coal-2);border:1px solid rgba(234,230,221,.1);padding:28px}
+.usta .avatar{width:64px;height:64px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:16px}
+.usta h3{font-size:1.05rem;margin-bottom:4px}
+.usta p{color:var(--steel);font-size:.85rem}
+
+/* SAATLER + CTA */
+.saat{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:720px){.saat{grid-template-columns:1fr}}
+.saat table{width:100%;border-collapse:collapse;font-size:.92rem}
+.saat td{padding:11px 0;border-bottom:1px solid rgba(234,230,221,.08)}
+.saat td:last-child{text-align:right;color:var(--steel)}
+.saat .kapali{color:var(--red)}
+.wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:15px 28px;text-decoration:none;font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
+.saat .box{background:var(--coal-2);border:1px solid rgba(234,230,221,.1);padding:36px}
+.saat .box p{color:var(--steel);margin:12px 0 24px;font-size:.92rem}
+
+footer{padding:28px 24px;text-align:center;color:var(--steel);font-size:.8rem;border-top:1px solid rgba(234,230,221,.08)}
+a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+@media(prefers-reduced-motion:no-preference){
+  .hero>*{animation:up .6s ease both}
+  .hero p{animation-delay:.1s}.hero .cta-row{animation-delay:.2s}
+  @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<div class="pole"></div>
+<nav>
+  <a class="logo" href="#">Demir<span>.</span>Berber</a>
+  <a class="book" href="#randevu">Randevu Al</a>
+</nav>
+
+<header class="hero">
+  <div class="est">Est. 1987 · Üsküdar</div>
+  <h1>Usta işi tıraş,<br><span class="out">iki kuşaktır.</span></h1>
+  <p>Makine değil makas, acele değil özen. Demir Berber'de her tıraş sıcak havlu ile başlar, kolonya ile biter — 1987'den beri aynı özenle.</p>
+  <div class="cta-row">
+    <a class="btn btn-red" href="#randevu">Randevu Al</a>
+    <a class="btn btn-ghost" href="#tarife">Fiyat Tarifesi</a>
+  </div>
+</header>
+
+<section id="tarife">
+  <div class="wrap">
+    <div class="sec-eyebrow">Tarife</div>
+    <h2 class="sec-title">Fiyat Panosu</h2>
+    <div class="tarife">
+      <div class="row"><span class="ad disp">Saç Tıraşı<small>Yıkama ve fön dahil</small></span><span class="dots"></span><span class="f">350₺</span></div>
+      <div class="row"><span class="ad disp">Sakal Tıraşı<small>Sıcak havlu · ustura</small></span><span class="dots"></span><span class="f">250₺</span></div>
+      <div class="row"><span class="ad disp">Saç + Sakal<small>Komple bakım</small></span><span class="dots"></span><span class="f">500₺</span></div>
+      <div class="row"><span class="ad disp">Çocuk Tıraşı<small>12 yaş altı</small></span><span class="dots"></span><span class="f">250₺</span></div>
+      <div class="row"><span class="ad disp">Damat Paketi<small>Cilt bakımı · masaj · tıraş</small></span><span class="dots"></span><span class="f">900₺</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow">Ekip</div>
+    <h2 class="sec-title">Ustalar</h2>
+    <div class="ustalar">
+      <div class="usta"><div class="avatar">HD</div><h3>Hasan Demir</h3><p>Kurucu usta · 39 yıl deneyim</p></div>
+      <div class="usta"><div class="avatar">MD</div><h3>Mert Demir</h3><p>İkinci kuşak · fade &amp; modern kesim</p></div>
+      <div class="usta"><div class="avatar">EK</div><h3>Emre Kaya</h3><p>Sakal tasarımı · ustura uzmanı</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="randevu">
+  <div class="wrap saat">
+    <div>
+      <div class="sec-eyebrow">Çalışma Saatleri</div>
+      <h2 class="sec-title">Ne Zaman Buradayız?</h2>
+      <table>
+        <tr><td>Pazartesi – Cuma</td><td>09.00 – 20.00</td></tr>
+        <tr><td>Cumartesi</td><td>09.00 – 21.00</td></tr>
+        <tr><td>Pazar</td><td class="kapali">Kapalı</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h3 class="disp">Sıra beklemeyin.</h3>
+      <p>WhatsApp'tan yazın, size en yakın boş saati ayıralım. Validebağ Cd. No:12, Üsküdar.</p>
+      <a class="wa" href="https://wa.me/905000000000">💬 WhatsApp Randevu</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Demir Berber — Bu site bir tasarım demosudur.</footer>
+<div class="pole"></div>
+
+</body>
+</html>
