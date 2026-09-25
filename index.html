@@ -3,69 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Osman — Web Tasarım Portföyü</title>
+<title>Osman Berk — Yazılım Portföyü</title>
+<meta name="description" content="Yapay zekâ entegrasyonu, Chrome uzantıları, otomasyon ve web siteleri. Canlı ürünler ve örnek çalışmalar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Fraunces:opsz,wght@9..144,600;9..144,900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0F1115;--card:#181B22;--ink:#EDEAE4;--mut:#8B8F99;--acc:#5BC0BE}
+:root{--bg:#0F1115;--card:#181B22;--ink:#EDEAE4;--mut:#8B8F99;--acc:#5BC0BE;--line:rgba(237,234,228,.08)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;padding:0 20px}
-.wrap{max-width:820px;margin:0 auto}
-header{padding:70px 0 50px}
-header .eyebrow{color:var(--acc);font-size:.75rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;margin-bottom:14px}
-header h1{font-family:'Fraunces',serif;font-size:clamp(2rem,7vw,3.4rem);font-weight:900;line-height:1.08}
-header p{color:var(--mut);max-width:52ch;margin-top:16px}
-.grid{display:grid;gap:18px;padding-bottom:30px}
-.card{display:block;background:var(--card);border:1px solid rgba(237,234,228,.08);border-radius:16px;padding:30px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;padding:0 16px}
+.wrap{max-width:960px;margin:0 auto}
+a{color:var(--acc)}
+a:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+header{padding:70px 0 40px}
+.eyebrow{color:var(--acc);font-size:.75rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Fraunces',serif;font-size:clamp(2rem,7vw,3.4rem);font-weight:900;line-height:1.08}
+header p{color:var(--mut);max-width:56ch;margin-top:16px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-block;background:var(--acc);color:#0F1115;font-weight:800;text-decoration:none;padding:13px 26px;border-radius:999px;font-size:.9rem}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+section{padding:36px 0}
+h2.sec{font-family:'Fraunces',serif;font-size:1.7rem;margin-bottom:6px}
+.sub{color:var(--mut);font-size:.95rem;margin-bottom:24px}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.svc h3{font-size:1rem;margin-bottom:6px}
+.svc p{color:var(--mut);font-size:.88rem}
+.prod{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:18px}
+.prod img{width:100%;border-radius:10px;border:1px solid var(--line);display:block;background:#fff}
+.shots{display:flex;gap:10px}
+.shots img{width:50%;max-height:360px;object-fit:cover;object-position:top}
+.tag{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);border:1px solid rgba(91,192,190,.35);padding:4px 12px;border-radius:999px;margin-bottom:12px}
+.prod h3{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:600;margin-bottom:8px}
+.prod p{color:var(--mut);font-size:.92rem}
+.prod ul{list-style:none;margin-top:12px;font-size:.88rem}
+.prod li{padding-left:18px;position:relative;margin-bottom:4px}
+.prod li::before{content:"→";position:absolute;left:0;color:var(--acc)}
+.stack{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.stack span{font-size:.72rem;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
 .card:hover{transform:translateY(-3px);border-color:var(--acc)}
-.card .tag{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);border:1px solid rgba(91,192,190,.35);padding:4px 12px;border-radius:999px;margin-bottom:14px}
-.card h2{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;margin-bottom:8px}
-.card p{color:var(--mut);font-size:.92rem}
-.card .go{margin-top:16px;font-size:.85rem;font-weight:800;color:var(--acc)}
-.cta{background:linear-gradient(135deg,#16323F,#10252E);border:1px solid rgba(91,192,190,.25);border-radius:16px;padding:34px 30px;margin:14px 0 60px;text-align:center}
+.card h3{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;margin-bottom:8px}
+.card p{color:var(--mut);font-size:.9rem}
+.card .go{margin-top:14px;font-size:.85rem;font-weight:800;color:var(--acc)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;counter-reset:s}
+.step{border-left:2px solid var(--acc);padding:4px 0 4px 16px}
+.step b{display:block;margin-bottom:4px}
+.step p{color:var(--mut);font-size:.88rem}
+.cta{background:linear-gradient(135deg,#16323F,#10252E);border:1px solid rgba(91,192,190,.25);border-radius:16px;padding:34px 26px;margin:20px 0 60px;text-align:center}
 .cta h2{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:8px}
 .cta p{color:var(--mut);font-size:.92rem;margin-bottom:20px}
-.cta a{display:inline-block;background:var(--acc);color:#0F1115;font-weight:800;text-decoration:none;padding:13px 28px;border-radius:999px;font-size:.9rem}
 footer{text-align:center;color:var(--mut);font-size:.78rem;padding-bottom:30px}
-a:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+@media (max-width:720px){.prod{grid-template-columns:1fr;padding:18px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Web Tasarım · 24 Saatte Teslim</div>
-    <h1>İşletmenizin yüzü,<br>tek sayfada.</h1>
-    <p>Küçük işletmeler için hızlı, modern ve mobil uyumlu tanıtım siteleri tasarlıyorum. Aşağıdaki demolara telefonunuzdan bakın — müşterileriniz de öyle bakacak.</p>
+    <div class="eyebrow">Yazılım Uzmanı · Osman Berk Yavuzdoğan</div>
+    <h1>Elle yaptığınız işi<br>yazılıma devredin.</h1>
+    <p>Yapay zekâ entegrasyonu, Chrome uzantıları, otomasyon ve hızlı web siteleri geliştiriyorum. Ürünler bölümündekiler hayali örnek değil; kendim tasarlayıp kodladığım, çalışan yazılımlar.</p>
+    <div class="btns">
+      <a class="btn" href="https://bionluk.com/osmanby0" rel="noopener">Bionluk'tan Ulaşın</a>
+      <a class="btn ghost" href="#urunler">Ürünleri Gör ↓</a>
+    </div>
   </header>
 
-  <div class="grid">
-    <a class="card" href="kafe/">
-      <span class="tag">Kafe · Tanıtım Sitesi</span>
-      <h2>Kavella Kahve</h2>
-      <p>Üçüncü dalga kahveci için sıcak, karakterli tek sayfa: menü, hikâye, konum ve WhatsApp iletişim.</p>
-      <div class="go">Demoyu Gör →</div>
-    </a>
-    <a class="card" href="berber/">
-      <span class="tag">Berber · Randevu Odaklı</span>
-      <h2>Demir Berber</h2>
-      <p>İki kuşaklık berber dükkânı için koyu, vintage tarz: fiyat panosu, ustalar ve WhatsApp randevu.</p>
-      <div class="go">Demoyu Gör →</div>
-    </a>
-    <a class="card" href="qr-menu/">
-      <span class="tag">Restoran · QR Menü</span>
-      <h2>Meşale Ocakbaşı</h2>
-      <p>Masadaki QR koddan açılan, kategori sekmeli mobil menü. Baskı maliyeti yok, fiyat güncellemesi anında.</p>
-      <div class="go">Demoyu Gör →</div>
-    </a>
-  </div>
+  <section>
+    <h2 class="sec">Neler yapıyorum?</h2>
+    <p class="sub">İhtiyacınızı yazın; hangisinin işinizi çözeceğini birlikte netleştirelim.</p>
+    <div class="services">
+      <div class="svc"><h3>🤖 Yapay zekâ entegrasyonu</h3><p>E-posta yanıtlama, metin/doküman özetleme, form ve CV işleme gibi işleri ChatGPT/Claude ile otomatikleştiririm.</p></div>
+      <div class="svc"><h3>🧩 Chrome uzantısı</h3><p>Her gün aynı siteyle uğraşıyorsanız, o işi tek tıka indiren özel bir tarayıcı eklentisi.</p></div>
+      <div class="svc"><h3>⚙️ Otomasyon &amp; bot</h3><p>Excel, PDF ve web verisiyle yapılan tekrarlı işler için script ve botlar.</p></div>
+      <div class="svc"><h3>🌐 Web sitesi &amp; araç</h3><p>Hızlı, mobil uyumlu tanıtım siteleri ve tarayıcıda çalışan web araçları.</p></div>
+    </div>
+  </section>
+
+  <section id="urunler">
+    <h2 class="sec">Ürünlerim</h2>
+    <p class="sub">Fikirden yayına kadar tek başıma geliştirdiğim projeler.</p>
+
+    <article class="prod" style="grid-template-columns:1fr">
+      <img src="img/is-basvuru.png" alt="Kariyer.net'teki bir ilan için uzantının uyarladığı CV maddeleri" loading="lazy">
+      <div class="prod" style="padding:0;border:0;margin:0">
+      <div>
+        <span class="tag">Yapay Zekâ · Chrome Uzantısı</span>
+        <h3>İş Başvuru Asistanı</h3>
+        <p>Kariyer.net veya LinkedIn'de açtığınız ilanı okur, CV maddelerinizi o ilana göre uyarlar ve kapak mektubu yazar.</p>
+        <ul>
+          <li>Sayfadaki ilanı otomatik okuyan uzantı</li>
+          <li>Claude API ile çalışan, canlıda olan sunucu tarafı</li>
+          <li>Ücretsiz kullanım limiti ve bekleme listesi altyapısı</li>
+        </ul>
+        <div class="stack"><span>Chrome MV3</span><span>Cloudflare Workers</span><span>Claude API</span><span>KV</span></div>
+      </div>
+      <img src="img/is-basvuru-mektup.png" alt="Uzantının ilana göre yazdığı kapak mektubu" loading="lazy">
+      </div>
+    </article>
+
+    <article class="prod">
+      <img src="img/scantodoc.png" alt="ScanToDoc PDF'den Word'e dönüştürme aracı" loading="lazy">
+      <div>
+        <span class="tag">Web Aracı · OCR</span>
+        <h3>ScanToDoc</h3>
+        <p>Taranmış PDF'i düzenlenebilir Word dosyasına çevirir. Birleştirme, bölme ve Word'den PDF'e araçları da var.</p>
+        <ul>
+          <li>Metin tanıma tamamen tarayıcıda çalışır, dosya hiçbir sunucuya gitmez</li>
+          <li>Satır ve paragraf yapısını koruyan .docx çıktısı</li>
+          <li>Sunucu maliyeti sıfır</li>
+        </ul>
+        <div class="stack"><span>Tesseract.js</span><span>PDF.js</span><span>docx</span><span>Web Worker</span></div>
+      </div>
+    </article>
+
+    <article class="prod">
+      <img src="img/paperwise.png" alt="Paperwise PDF düzenleyici eklentisinin sayfa ızgarası" loading="lazy">
+      <div>
+        <span class="tag">Chrome Uzantısı · Yakında Web Mağazası'nda</span>
+        <h3>Paperwise</h3>
+        <p>PDF birleştirme, bölme, döndürme ve sayfa sıralama; görselleri PDF sayfasına çevirme. Hepsi cihazda, yükleme yok.</p>
+        <ul>
+          <li>Sürükle-bırak sayfa düzenleme</li>
+          <li>Pro özellikler için lisans doğrulama (Gumroad)</li>
+          <li>Otomatik tarayıcı testleriyle korunan kod</li>
+        </ul>
+        <div class="stack"><span>Chrome MV3</span><span>pdf-lib</span><span>PDF.js</span><span>Playwright</span></div>
+      </div>
+    </article>
+
+    <article class="prod">
+      <div class="shots">
+        <img src="img/adimsayar-1.png" alt="Adım Sayar ana ekranı" loading="lazy">
+        <img src="img/adimsayar-2.png" alt="Adım Sayar haftalık grafik ekranı" loading="lazy">
+      </div>
+      <div>
+        <span class="tag">Mobil Uygulama · Yakında Google Play'de</span>
+        <h3>Adım Sayar</h3>
+        <p>Ücretsiz, Türkçe adım sayar: günlük hedef, haftalık ve aylık grafikler, rozetler, koyu tema.</p>
+        <div class="stack"><span>Flutter</span><span>Android</span></div>
+      </div>
+    </article>
+
+    <article class="prod" style="grid-template-columns:1fr">
+      <div>
+        <span class="tag">Oyun · Çok Oyunculu</span>
+        <h3>Co-op Survivors</h3>
+        <p>Tarayıcıda 1-4 kişi online oynanan aksiyon oyunu. Farklı bilgisayarlardaki oyuncuları senkron tutan deterministik simülasyon ve lockstep ağ kodu; karmaşık, gerçek zamanlı sistemleri de uçtan uca kurabildiğimin göstergesi.</p>
+        <div class="stack"><span>TypeScript</span><span>WebGL / Pixi</span><span>WebSocket</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <h2 class="sec">Web tasarım örnekleri</h2>
+    <p class="sub">Küçük işletmeler için hazırladığım örnek tek sayfa siteler. Telefonunuzdan açıp bakın.</p>
+    <div class="grid">
+      <a class="card" href="kafe/"><span class="tag">Kafe</span><h3>Kavella Kahve</h3><p>Menü, hikâye, konum ve WhatsApp iletişim.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card" href="berber/"><span class="tag">Berber</span><h3>Demir Berber</h3><p>Fiyat panosu, ustalar ve WhatsApp randevu.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card" href="qr-menu/"><span class="tag">Restoran · QR Menü</span><h3>Meşale Ocakbaşı</h3><p>Masadaki QR koddan açılan, kategori sekmeli menü.</p><div class="go">Demoyu Gör →</div></a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Nasıl çalışıyoruz?</h2>
+    <p class="sub">Tüm süreç yazılı ilerler, her adım kayıt altında olur.</p>
+    <div class="steps">
+      <div class="step"><b>1. İhtiyacı yazın</b><p>Neyi otomatikleştirmek istediğinizi birkaç cümleyle anlatın.</p></div>
+      <div class="step"><b>2. Net teklif</b><p>Kapsam, fiyat ve teslim süresini baştan netleştiririm.</p></div>
+      <div class="step"><b>3. Ara teslim</b><p>Çalışan ilk sürümü görür, yorumunuzu yaparsınız.</p></div>
+      <div class="step"><b>4. Teslim &amp; destek</b><p>Kurulum, kısa kullanım notu ve teslim sonrası destek.</p></div>
+    </div>
+  </section>
 
   <div class="cta">
-    <h2>Siz de ister misiniz?</h2>
-    <p>Sitenizi 24 saat içinde teslim ediyorum. Alan adı ve yayınlama dahil paketler mevcut.</p>
-    <a href="https://bionluk.com" rel="noopener">Bionluk'tan Sipariş Verin</a>
+    <h2>Aklınızda bir iş mi var?</h2>
+    <p>Fikriniz netleşmemiş olsa da yazın. Uygulanabilir mi, ne kadar sürer, dürüstçe söylerim.</p>
+    <a class="btn" href="https://bionluk.com/osmanby0" rel="noopener">Bionluk'tan Mesaj Gönderin</a>
   </div>
 
-  <footer>© 2026 — Tüm demolar hayali markalar için tasarlanmıştır.</footer>
+  <footer>© 2026 Osman Berk Yavuzdoğan · Web tasarım örnekleri hayali markalar içindir.</footer>
 </div>
 </body>
 </html>
