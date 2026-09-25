@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denge Pilates Stüdyosu — Nişantaşı</title>
+<meta name="description" content="Nişantaşı'nda reformer ve mat pilates. Küçük gruplar, haftalık ders programı, ücretsiz tanışma dersi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{--plum:#2E2230;--clay:#B5654A;--sage:#8A9A7B;--mist:#EEF0EA;--white:#FFFFFF;--mut:#6E6570;--line:#E3E1DC}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--plum);line-height:1.6}
+img{display:block;max-width:100%}
+.s{font-family:'Syne',sans-serif;letter-spacing:-.02em;line-height:1}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.lbl{font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--clay)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 26px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.95rem;border:0;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.clay{background:var(--clay);color:#fff}
+.btn.line{border:1.5px solid var(--plum);color:var(--plum)}
+
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
+.logo{font-size:1.35rem;font-weight:800;text-decoration:none;color:var(--plum)}
+.logo i{font-style:normal;color:var(--clay)}
+nav .links{display:flex;gap:26px;align-items:center}
+nav .links a{text-decoration:none;color:var(--plum);font-size:.92rem}
+@media(max-width:760px){nav .links a:not(.btn){display:none}}
+
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-top:30px;padding-bottom:80px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(3rem,7.4vw,6.2rem);font-weight:800}
+.hero h1 .w{display:block}
+.hero h1 .w:nth-child(2){color:var(--sage);padding-left:.6em}
+.hero h1 .w:nth-child(3){color:var(--clay);padding-left:1.2em}
+.hero p{max-width:44ch;color:var(--mut);margin:26px 0 30px;font-size:1.05rem}
+.arch{position:relative;border-radius:999px 999px 24px 24px;overflow:hidden;aspect-ratio:4/5;background:var(--mist)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.breath{position:absolute;left:22px;bottom:22px;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);padding:12px 16px 12px 12px;border-radius:999px;font-size:.85rem;font-weight:500}
+.breath i{width:26px;height:26px;border-radius:50%;background:var(--sage);animation:breath 8s ease-in-out infinite}
+@keyframes breath{0%,100%{transform:scale(.6);opacity:.6}45%,55%{transform:scale(1);opacity:1}}
+.stats{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.stats b{display:block;font-family:'Syne';font-size:1.8rem}
+.stats span{font-size:.82rem;color:var(--mut)}
+
+section{padding:96px 0}
+h2.s{font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;margin:12px 0 16px}
+.lead{max-width:56ch;color:var(--mut);margin-bottom:44px}
+
+/* ders tipleri */
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.types{grid-template-columns:1fr}}
+.type{border-radius:22px;overflow:hidden;background:var(--mist)}
+.type img{aspect-ratio:5/4;object-fit:cover;width:100%}
+.type div{padding:22px}
+.type h3{font-size:1.45rem;font-weight:700}
+.type p{color:var(--mut);font-size:.94rem;margin-top:6px}
+.lv{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.lv span{font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:#fff}
+
+/* program */
+.sched{background:var(--plum);color:#fff}
+.sched .lead{color:#C9BFCB}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:22px;scrollbar-width:none}
+.days button{flex:none;font:inherit;font-weight:700;font-size:.9rem;padding:12px 18px;border-radius:14px;border:1px solid #4A3A4C;background:transparent;color:#fff;cursor:pointer;min-width:74px;text-align:center}
+.days button small{display:block;font-weight:500;font-size:.72rem;opacity:.7}
+.days button[aria-pressed=true]{background:var(--clay);border-color:var(--clay)}
+.filters{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:.82rem;padding:7px 14px;border-radius:999px;border:1px solid #4A3A4C;background:none;color:#C9BFCB;cursor:pointer}
+.filters button[aria-pressed=true]{background:#fff;color:var(--plum);border-color:#fff}
+.slot{display:grid;grid-template-columns:90px 1fr auto auto;gap:18px;align-items:center;padding:18px 20px;border-radius:16px;background:#3A2C3C;margin-bottom:10px}
+@media(max-width:640px){.slot{grid-template-columns:70px 1fr;row-gap:10px}.slot .spots{grid-column:2}.slot a{grid-column:1 / -1;justify-content:center}}
+.slot time{font-family:'Syne';font-size:1.4rem;font-weight:700}
+.slot h3{font-size:1.05rem}
+.slot p{font-size:.84rem;color:#C9BFCB}
+.spots{font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.spots i{display:inline-flex;gap:3px}
+.spots i b{width:8px;height:8px;border-radius:50%;background:#5E4B61}
+.spots i b.f{background:var(--sage)}
+.spots.full{color:#E7A38E}
+.slot a{padding:11px 18px;font-size:.85rem}
+.slot a.dis{background:#4A3A4C;color:#C9BFCB;pointer-events:none}
+.empty{color:#C9BFCB;padding:22px;border:1px dashed #4A3A4C;border-radius:16px}
+
+/* fiyat */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.plans{grid-template-columns:1fr}}
+.plan{border:1px solid var(--line);border-radius:22px;padding:28px}
+.plan.pop{background:var(--mist);border-color:var(--sage)}
+.plan h3{font-size:1.2rem}
+.plan .pr{font-family:'Syne';font-size:2.6rem;font-weight:800;margin:12px 0 2px}
+.plan .per{color:var(--mut);font-size:.86rem}
+.plan ul{list-style:none;margin:20px 0 24px;font-size:.94rem}
+.plan li{padding:8px 0;border-bottom:1px solid var(--line)}
+.plan li:last-child{border:0}
+
+.first{background:var(--mist)}
+.first .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:860px){.first .wrap{grid-template-columns:1fr}}
+.first img{border-radius:22px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.first ol{margin:18px 0 28px 20px;color:var(--mut)}
+.first li{padding:4px 0}
+footer{padding:28px 0;font-size:.82rem;color:var(--mut)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){.breath i{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo s" href="#">denge<i>.</i></a><div class="links"><a href="#dersler">Dersler</a><a href="#program">Program</a><a href="#fiyatlar">Fiyatlar</a><a class="btn clay" href="#tanisma" style="padding:11px 20px">Tanışma dersi</a></div></div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="lbl">Reformer &amp; mat pilates · Nişantaşı</div>
+      <h1 class="s" style="margin-top:18px"><span class="w">Nefes al.</span><span class="w">Uzan.</span><span class="w">Güçlen.</span></h1>
+      <p>En fazla 6 kişilik reformer grupları. Eğitmeniniz her hareketi sizin bedeninize göre ayarlar; kalabalık bir salonda kaybolmazsınız.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn clay" href="#tanisma">Ücretsiz tanışma dersi</a><a class="btn line" href="#program">Haftalık program</a></div>
+      <div class="stats"><div><b>6</b><span>kişilik gruplar</span></div><div><b>8</b><span>reformer aleti</span></div><div><b>4</b><span>sertifikalı eğitmen</span></div></div>
+    </div>
+    <div class="arch"><img src="img/hero.jpg" alt="Kemerli, aydınlık stüdyoda reformer aletinde çalışan kadın" fetchpriority="high"><div class="breath"><i aria-hidden="true"></i>4 saniye al, 4 saniye ver</div></div>
+  </div>
+</header>
+
+<section id="dersler" style="padding-top:40px">
+  <div class="wrap">
+    <div class="lbl">Dersler</div>
+    <h2 class="s">Size uygun ders hangisi?</h2>
+    <p class="lead">Emin değilseniz tanışma dersinde birlikte karar veriyoruz. Duruş analizi yapılır, seviyenize göre grup önerilir.</p>
+    <div class="types">
+      <article class="type"><img src="img/reformer.jpg" alt="Reformer aletinde esneme" loading="lazy"><div><h3 class="s">Reformer</h3><p>Yaylı aletle direnç çalışması. Karın, sırt ve kalça kaslarını derinden çalıştırır.</p><div class="lv"><span>Başlangıç</span><span>Orta</span><span>İleri</span></div></div></article>
+      <article class="type"><img src="img/mat.jpg" alt="Matta pilates yapan grup" loading="lazy"><div><h3 class="s">Mat pilates</h3><p>Kendi vücut ağırlığınızla, mat üzerinde. Esneklik ve denge için ideal başlangıç.</p><div class="lv"><span>Tüm seviyeler</span></div></div></article>
+      <article class="type"><img src="img/ring.jpg" alt="Pilates çemberi ile çalışma" loading="lazy"><div><h3 class="s">Hamile &amp; doğum sonrası</h3><p>Doktor onayıyla, küçük gruplarda. Pelvik taban ve postür odaklı.</p><div class="lv"><span>Özel grup</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="program" class="sched">
+  <div class="wrap">
+    <div class="lbl" style="color:#E7A38E">Haftalık program</div>
+    <h2 class="s">Bu hafta hangi saatler boş?</h2>
+    <p class="lead">Bir güne dokunun, derslerin doluluğunu görün. Yer ayırtmak WhatsApp'tan tek mesaj.</p>
+    <div class="days" id="days" role="group" aria-label="Gün seçimi"></div>
+    <div class="filters" id="filters" role="group" aria-label="Ders türü"></div>
+    <div id="slots"></div>
+  </div>
+</section>
+
+<section id="fiyatlar">
+  <div class="wrap">
+    <div class="lbl">Üyelik</div>
+    <h2 class="s">Paketler</h2>
+    <p class="lead">Paketler 30 gün geçerlidir. Dersten 6 saat önce iptal ederseniz hakkınız yanmaz.</p>
+    <div class="plans">
+      <div class="plan"><h3>Tek ders</h3><div class="pr">1.100₺</div><div class="per">ders başına</div><ul><li>Tüm ders türleri</li><li>Havlu ve çorap dahil</li></ul><a class="btn line" href="#program">Program</a></div>
+      <div class="plan pop"><h3>8 ders · en çok tercih edilen</h3><div class="pr">7.200₺</div><div class="per">ders başı 900₺</div><ul><li>Haftada 2 ders</li><li>Aylık duruş kontrolü</li><li>1 ders dondurma hakkı</li></ul><a class="btn clay" href="#tanisma">Tanışma dersiyle başla</a></div>
+      <div class="plan"><h3>Özel ders</h3><div class="pr">2.400₺</div><div class="per">birebir, 55 dk</div><ul><li>Size özel program</li><li>Sakatlık sonrası destek</li></ul><a class="btn line" href="https://wa.me/905000000000?text=Birebir%20pilates%20dersi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum">Bilgi al</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="tanisma" class="first">
+  <div class="wrap">
+    <img src="img/plank.jpg" alt="Reformerda plank hareketi" loading="lazy">
+    <div>
+      <div class="lbl">İlk ders ücretsiz</div>
+      <h2 class="s">Tanışma dersi nasıl geçer?</h2>
+      <ol><li>Kısa bir sohbet: hedefleriniz, varsa ağrılarınız.</li><li>Duruş ve esneklik analizi (10 dk).</li><li>Reformerda 30 dakikalık deneme dersi.</li><li>Size uygun grup ve saat önerisi.</li></ol>
+      <a class="btn clay" href="https://wa.me/905000000000?text=Merhaba%2C%20%C3%BCcretsiz%20tan%C4%B1%C5%9Fma%20dersi%20almak%20istiyorum">WhatsApp'tan tanışma dersi al</a>
+      <p style="margin-top:22px;font-size:.9rem;color:var(--mut)">Teşvikiye Mah. Abdi İpekçi Cd. No:21/3, Nişantaşı · Hafta içi 07.00–21.00, hafta sonu 09.00–17.00</p>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Denge Pilates Stüdyosu</span><span>Bu site bir tasarım demosudur · Fotoğraflar: Unsplash</span></div></footer>
+<script>
+// [saat, ders, eğitmen, seviye, dolu, kapasite]
+const P={1:[['07.30','Reformer','Selin','Başlangıç',4,6],['12.30','Mat pilates','Deniz','Tüm seviyeler',6,10],['18.30','Reformer','Selin','Orta',6,6],['20.00','Reformer','Ece','İleri',3,6]],
+2:[['09.00','Hamile & doğum sonrası','Deniz','Özel grup',2,4],['18.00','Reformer','Ece','Başlangıç',5,6],['19.30','Mat pilates','Deniz','Tüm seviyeler',7,10]],
+3:[['07.30','Reformer','Selin','Orta',2,6],['12.30','Reformer','Ece','Başlangıç',6,6],['18.30','Reformer','Selin','İleri',4,6]],
+4:[['09.00','Hamile & doğum sonrası','Deniz','Özel grup',3,4],['18.00','Mat pilates','Deniz','Tüm seviyeler',4,10],['19.30','Reformer','Ece','Orta',5,6]],
+5:[['07.30','Reformer','Selin','Başlangıç',1,6],['18.30','Reformer','Ece','Orta',6,6]],
+6:[['10.00','Reformer','Selin','Başlangıç',3,6],['11.30','Mat pilates','Deniz','Tüm seviyeler',8,10],['13.00','Reformer','Ece','Orta',2,6]],
+0:[['10.00','Reformer','Ece','Başlangıç',4,6],['11.30','Reformer','Selin','Orta',5,6]]};
+const dayEl=document.getElementById('days'),slotEl=document.getElementById('slots'),filEl=document.getElementById('filters');
+const wd=new Intl.DateTimeFormat('tr-TR',{weekday:'short'}),dm=new Intl.DateTimeFormat('tr-TR',{day:'numeric',month:'short'}),full=new Intl.DateTimeFormat('tr-TR',{weekday:'long',day:'numeric',month:'long'});
+let sel=0,type='Tümü';const dates=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()+i);return d});
+dates.forEach((d,i)=>{const b=document.createElement('button');b.innerHTML=(i===0?'Bugün':wd.format(d))+`<small>${dm.format(d)}</small>`;b.onclick=()=>{sel=i;render()};dayEl.append(b)});
+['Tümü','Reformer','Mat pilates','Hamile & doğum sonrası'].forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{type=t;render()};filEl.append(b)});
+function render(){
+ [...dayEl.children].forEach((b,i)=>b.setAttribute('aria-pressed',i===sel));
+ [...filEl.children].forEach(b=>b.setAttribute('aria-pressed',b.textContent===type));
+ const d=dates[sel],list=(P[d.getDay()]||[]).filter(s=>type==='Tümü'||s[1]===type);
+ slotEl.innerHTML=list.length?list.map(([t,n,e,l,f,c])=>{const isFull=f>=c,msg=encodeURIComponent(`Merhaba, ${full.format(d)} ${t} ${n} (${e}) dersine yer ayırtmak istiyorum.`);
+  return `<div class="slot"><time>${t}</time><div><h3>${n}</h3><p>${e} · ${l} · 55 dk</p></div><div class="spots${isFull?' full':''}"><i>${[...Array(c)].map((_,k)=>`<b class="${k<f?'':'f'}"></b>`).join('')}</i>${isFull?'Dolu':(c-f)+' yer'}</div><a class="btn ${isFull?'dis':'clay'}" href="${isFull?'#':'https://wa.me/905000000000?text='+msg}">${isFull?'Dolu':'Yer ayırt'}</a></div>`}).join('')
+ :'<div class="empty">Bu gün seçtiğiniz türde ders yok. Başka bir gün deneyin.</div>';
+}
+render();
+</script>
+</body>
+</html>

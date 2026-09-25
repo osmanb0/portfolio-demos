@@ -4,118 +4,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meşale Ocakbaşı — Dijital Menü</title>
+<meta name="description" content="Meşale Ocakbaşı QR menüsü: mezeler, közde kebaplar, tatlılar ve içecekler.">
+<meta name="theme-color" content="#1C1917">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Yeseva+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --paper:#FCF8F2; --char:#26201B; --ember:#A62B24; --gold:#C99046; --soft:#7A6F63;
-}
+:root{--coal:#1C1917;--coal2:#292524;--ash:#F5F1EC;--ember:#EA580C;--ember2:#FB923C;--sumac:#8C1C2B;--parsley:#4D7C3A;--mut:#78716C}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Manrope',sans-serif;background:var(--paper);color:var(--char);line-height:1.5;max-width:560px;margin:0 auto;box-shadow:0 0 40px rgba(38,32,27,.12);min-height:100vh}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font-family:'Figtree',sans-serif;background:var(--coal);color:var(--coal);line-height:1.5}
+img{display:block;max-width:100%}
+.bs{font-family:'Big Shoulders Display',sans-serif;text-transform:uppercase;letter-spacing:.02em;line-height:.95}
+button,a{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ember2);outline-offset:2px}
 
-header{background:var(--char);color:var(--paper);text-align:center;padding:34px 20px 26px}
-header .flame{font-size:1.6rem}
-header h1{font-family:'Yeseva One',serif;font-size:1.9rem;letter-spacing:.02em;margin-top:6px}
-header p{color:var(--gold);font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;margin-top:6px}
+.layout{display:grid;grid-template-columns:1fr minmax(0,480px) 1fr;min-height:100vh}
+.side{color:var(--ash);padding:56px 40px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between}
+.side.l{align-items:flex-end;text-align:right}
+.side h2{font-size:3.4rem;color:var(--ash)}
+.side h2 span{color:var(--ember)}
+.side p{color:#A8A29E;max-width:28ch;margin-top:14px;font-size:.95rem}
+.qr{width:120px;height:120px;background:
+ conic-gradient(from 90deg at 18px 18px,var(--ash) 25%,transparent 0) 0 0/40px 40px,
+ repeating-linear-gradient(90deg,var(--ash) 0 6px,transparent 6px 14px),
+ var(--coal2);border:8px solid var(--ash);border-radius:6px;opacity:.9}
+.side small{color:#A8A29E;font-size:.8rem}
+@media(max-width:1000px){.layout{display:block}.side{display:none}}
 
-/* KATEGORİ SEKMELERİ */
-.tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;overflow-x:auto;padding:12px 16px;background:var(--paper);border-bottom:1px solid rgba(38,32,27,.1);scrollbar-width:none}
+.app{background:var(--ash);min-height:100vh;position:relative;box-shadow:0 0 0 1px #000,0 0 80px rgba(234,88,12,.18)}
+.head{position:relative;height:300px;color:var(--ash);overflow:hidden}
+.head img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.head::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,25,23,.15),rgba(28,25,23,.95) 88%)}
+.head .in{position:absolute;left:20px;right:20px;bottom:22px;z-index:2}
+.head .tbl{display:inline-block;background:var(--ember);color:var(--coal);font-weight:700;font-size:.78rem;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.head h1{font-size:3.6rem}
+.head h1 span{color:var(--ember2)}
+.head p{font-size:.88rem;color:#D6D3D1;margin-top:6px}
+.glow{position:absolute;left:0;right:0;bottom:0;height:4px;z-index:3;background:linear-gradient(90deg,var(--sumac),var(--ember),var(--ember2),var(--ember),var(--sumac));background-size:200% 100%;animation:glow 4s linear infinite}
+@keyframes glow{to{background-position:200% 0}}
+
+.tabs{position:sticky;top:0;z-index:10;background:var(--coal);display:flex;gap:6px;overflow-x:auto;padding:10px 12px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:0 0 auto;border:1.5px solid rgba(38,32,27,.2);background:transparent;color:var(--char);padding:8px 18px;border-radius:999px;font-family:'Manrope',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s}
-.tab.active{background:var(--ember);border-color:var(--ember);color:#fff}
-.tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tabs a{flex:none;color:#D6D3D1;text-decoration:none;font-weight:700;font-size:.88rem;padding:9px 14px;border-radius:999px;border:1px solid #44403C;transition:.2s}
+.tabs a.on{background:var(--ember);border-color:var(--ember);color:var(--coal)}
 
-/* MENÜ LİSTESİ */
-main{padding:8px 16px 40px}
-.cat{padding-top:18px}
-.cat h2{font-family:'Yeseva One',serif;font-size:1.3rem;color:var(--ember);padding:10px 4px;display:flex;align-items:center;gap:12px}
-.cat h2::after{content:"";flex:1;border-bottom:1px solid rgba(38,32,27,.15)}
-.item{display:flex;justify-content:space-between;gap:14px;padding:14px 4px;border-bottom:1px dashed rgba(38,32,27,.12)}
-.item:last-child{border-bottom:none}
-.item .ad{font-weight:600;font-size:.98rem}
-.item .desc{color:var(--soft);font-size:.82rem;margin-top:3px}
-.item .price{font-weight:800;color:var(--char);white-space:nowrap;font-size:1rem}
-.badge{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:2px}
-.b-acili{background:#F6E3E1;color:var(--ember)}
-.b-veg{background:#E4EEE2;color:#3E6B3A}
-
-/* ALT BAR */
-.bottom{position:sticky;bottom:0;background:var(--char);padding:14px 16px;display:flex;gap:10px}
-.bottom a{flex:1;text-align:center;text-decoration:none;font-weight:800;font-size:.85rem;padding:13px;border-radius:10px}
-.bottom .call{background:transparent;border:1.5px solid rgba(252,248,242,.4);color:var(--paper)}
-.bottom .wa{background:#25D366;color:#fff}
-footer{background:var(--char);color:rgba(252,248,242,.5);text-align:center;font-size:.72rem;padding:0 16px 18px}
+.note{margin:16px 16px 0;background:#fff;border-radius:12px;padding:12px 14px;font-size:.84rem;color:var(--mut);display:flex;gap:10px;align-items:center}
+.note b{color:var(--coal)}
+.cat{padding:28px 16px 8px}
+.cat h2{font-size:2.3rem;display:flex;align-items:baseline;gap:10px}
+.cat h2 small{font-family:'Figtree';font-size:.8rem;font-weight:500;color:var(--mut);text-transform:none;letter-spacing:0}
+.cat .desc{color:var(--mut);font-size:.88rem;margin:4px 0 14px}
+.item{display:grid;grid-template-columns:1fr auto;gap:12px;background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;align-items:center}
+.item.has-img{grid-template-columns:88px 1fr auto}
+.item img{width:88px;height:88px;border-radius:10px;object-fit:cover}
+.item h3{font-size:1rem;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.item p{font-size:.84rem;color:var(--mut);margin-top:2px}
+.item .price{font-family:'Big Shoulders Display';font-weight:900;font-size:1.5rem;color:var(--coal);white-space:nowrap}
+.hot{color:var(--sumac);font-size:.72rem;letter-spacing:-1px}
+.b{font-size:.66rem;font-weight:700;padding:2px 7px;border-radius:999px;background:#FFEDD5;color:#9A3412;letter-spacing:.02em}
+.b.v{background:#DCFCE7;color:var(--parsley)}
+.feature{margin:0 0 10px;border-radius:16px;overflow:hidden;background:var(--coal);color:var(--ash);position:relative}
+.feature img{width:100%;aspect-ratio:16/10;object-fit:cover;opacity:.85}
+.feature .in{padding:16px}
+.feature .tag{font-size:.72rem;font-weight:700;color:var(--ember2);letter-spacing:.14em;text-transform:uppercase}
+.feature h3{font-size:1.9rem;margin:4px 0}
+.feature p{color:#D6D3D1;font-size:.86rem}
+.feature .price{position:absolute;top:12px;right:12px;background:var(--ember);color:var(--coal);font-family:'Big Shoulders Display';font-weight:900;font-size:1.5rem;padding:4px 12px;border-radius:999px}
+.legend{padding:18px 16px 110px;color:var(--mut);font-size:.8rem;display:flex;flex-wrap:wrap;gap:8px 16px}
+.dock{position:sticky;bottom:0;z-index:10;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(245,241,236,0),var(--ash) 30%)}
+.dock a{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.92rem}
+.dock .w{background:var(--coal);color:var(--ash)}
+.dock .o{background:var(--ember);color:var(--coal)}
+footer{text-align:center;font-size:.72rem;color:var(--mut);padding:0 16px 20px}
+@media(prefers-reduced-motion:reduce){.glow{animation:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="flame">🔥</div>
-  <h1>Meşale Ocakbaşı</h1>
-  <p>Dijital Menü</p>
-</header>
-
-<nav class="tabs" id="tabs">
-  <button class="tab active" data-cat="hepsi">Tümü</button>
-  <button class="tab" data-cat="baslangic">Başlangıçlar</button>
-  <button class="tab" data-cat="kebap">Kebaplar</button>
-  <button class="tab" data-cat="pide">Pideler</button>
-  <button class="tab" data-cat="tatli">Tatlı &amp; İçecek</button>
-</nav>
-
-<main>
-  <div class="cat" data-cat="baslangic">
-    <h2>Başlangıçlar</h2>
-    <div class="item"><div><div class="ad">Mercimek Çorbası</div><div class="desc">Tereyağı ve limon eşliğinde</div></div><div class="price">90₺</div></div>
-    <div class="item"><div><div class="ad">Haydari <span class="badge b-veg">Vejetaryen</span></div><div class="desc">Süzme yoğurt, dereotu, ceviz</div></div><div class="price">110₺</div></div>
-    <div class="item"><div><div class="ad">Acılı Ezme <span class="badge b-acili">Acılı</span></div><div class="desc">Közlenmiş biber, domates, nar ekşisi</div></div><div class="price">100₺</div></div>
-    <div class="item"><div><div class="ad">İçli Köfte (2 adet)</div><div class="desc">El açması, kıymalı cevizli iç</div></div><div class="price">160₺</div></div>
-  </div>
-
-  <div class="cat" data-cat="kebap">
-    <h2>Kebaplar</h2>
-    <div class="item"><div><div class="ad">Adana Kebap <span class="badge b-acili">Acılı</span></div><div class="desc">Zırhla çekilmiş kuzu eti, közlenmiş sebze</div></div><div class="price">380₺</div></div>
-    <div class="item"><div><div class="ad">Urfa Kebap</div><div class="desc">Acısız, bol sumaklı soğan salatası ile</div></div><div class="price">380₺</div></div>
-    <div class="item"><div><div class="ad">Kuzu Şiş</div><div class="desc">Marine edilmiş kuzu but, pilav üstü</div></div><div class="price">450₺</div></div>
-    <div class="item"><div><div class="ad">Tavuk Kanat</div><div class="desc">12 adet, ocakbaşında ızgara</div></div><div class="price">300₺</div></div>
-    <div class="item"><div><div class="ad">Karışık Izgara (2 kişilik)</div><div class="desc">Adana, şiş, kanat, pirzola bir arada</div></div><div class="price">850₺</div></div>
-  </div>
-
-  <div class="cat" data-cat="pide">
-    <h2>Pideler</h2>
-    <div class="item"><div><div class="ad">Kıymalı Pide</div><div class="desc">Kuşbaşılı seçeneği mevcuttur</div></div><div class="price">240₺</div></div>
-    <div class="item"><div><div class="ad">Kaşarlı Pide <span class="badge b-veg">Vejetaryen</span></div><div class="desc">Trabzon kaşarı, tereyağlı</div></div><div class="price">220₺</div></div>
-    <div class="item"><div><div class="ad">Karadeniz Kapalı Pide</div><div class="desc">Kıyma + kaşar, yumurtalı</div></div><div class="price">280₺</div></div>
-    <div class="item"><div><div class="ad">Lahmacun <span class="badge b-acili">Acılı</span></div><div class="desc">İnce hamur, bol malzeme</div></div><div class="price">130₺</div></div>
-  </div>
-
-  <div class="cat" data-cat="tatli">
-    <h2>Tatlı &amp; İçecek</h2>
-    <div class="item"><div><div class="ad">Künefe</div><div class="desc">Antep fıstıklı, sıcak servis</div></div><div class="price">190₺</div></div>
-    <div class="item"><div><div class="ad">Katmer</div><div class="desc">Kaymaklı, fıstıklı</div></div><div class="price">210₺</div></div>
-    <div class="item"><div><div class="ad">Ayran (açık)</div><div class="desc">Bakır maşrapada</div></div><div class="price">50₺</div></div>
-    <div class="item"><div><div class="ad">Şalgam <span class="badge b-acili">Acılı</span></div><div class="desc">Adana usulü</div></div><div class="price">55₺</div></div>
-    <div class="item"><div><div class="ad">Çay</div><div class="desc">İnce belli bardakta</div></div><div class="price">25₺</div></div>
-  </div>
-</main>
-
-<div class="bottom">
-  <a class="call" href="tel:+905000000000">📞 Ara</a>
-  <a class="wa" href="https://wa.me/905000000000">💬 WhatsApp Sipariş</a>
+<div class="layout">
+  <aside class="side l">
+    <div><h2 class="bs">Masadan<br><span>telefona.</span></h2><p>Misafir masadaki QR kodu okutur, menü saniyede açılır. Fiyat değişince baskı yok; menü anında güncellenir.</p></div>
+    <small>Telefonunuzdan açmayı deneyin →</small>
+  </aside>
+  <main class="app">
+    <header class="head">
+      <img src="img/hero.jpg" alt="Közde pişen şişler ve ocakbaşı ustası" fetchpriority="high">
+      <div class="in">
+        <span class="tbl">Masa 7</span>
+        <h1 class="bs">Meşale<br><span>Ocakbaşı</span></h1>
+        <p>Beşiktaş · Her gün 12.00 – 00.00 · Meşe kömürü</p>
+      </div>
+      <div class="glow"></div>
+    </header>
+    <nav class="tabs" id="tabs" aria-label="Menü kategorileri"></nav>
+    <div class="note">🔥 <span><b>Ocak açık.</b> Kebaplar siparişten sonra 15–20 dakikada masanızda.</span></div>
+    <div id="menu"></div>
+    <div class="legend"><span><span class="hot">🌶</span> acılı</span><span><span class="b v">vejetaryen</span></span><span><span class="b">şefin önerisi</span></span><span>Alerjen bilgisi için garsonumuza sorun.</span></div>
+    <div class="dock">
+      <a class="w" href="https://wa.me/905000000000?text=Masa%207%20i%C3%A7in%20garson%20rica%20ediyoruz">🛎 Garson çağır</a>
+      <a class="o" href="https://wa.me/905000000000?text=Masa%207%20hesap%20l%C3%BCtfen">Hesap iste</a>
+    </div>
+    <footer>© 2026 Meşale Ocakbaşı · Bu menü bir tasarım demosudur · Fotoğraflar: Unsplash</footer>
+  </main>
+  <aside class="side">
+    <div class="qr" role="img" aria-label="QR kod örneği"></div>
+    <div><p>Menüde 6 kategori, 24 ürün.<br>Kategori sekmeleri siz kaydırdıkça kendini günceller.</p></div>
+  </aside>
 </div>
-<footer>© 2026 Meşale Ocakbaşı — Bu menü bir tasarım demosudur.</footer>
-
 <script>
-const tabs=document.querySelectorAll('.tab');
-const cats=document.querySelectorAll('.cat');
-tabs.forEach(t=>t.addEventListener('click',()=>{
-  tabs.forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');
-  const c=t.dataset.cat;
-  cats.forEach(el=>{el.style.display=(c==='hepsi'||el.dataset.cat===c)?'':'none';});
-  window.scrollTo({top:0,behavior:'smooth'});
-}));
+const M=[
+ {id:'mezeler',t:'Mezeler',d:'Günlük hazırlanır, biterse biter.',items:[
+  ['Atom','Süzme yoğurt, kurutulmuş acı biber, tereyağı',120,{hot:2,v:1}],
+  ['Közlenmiş patlıcan','Meşe közünde, sarımsaklı yoğurtla',130,{v:1,img:'meze'}],
+  ['Muhammara','Ceviz, kırmızı biber, nar ekşisi',120,{hot:1,v:1}],
+  ['Haydari','Yoğurt, taze nane, dereotu',100,{v:1}],
+  ['Mevsim salatası','Gavurdağı usulü, ceviz ve nar ekşili',150,{v:1}]]},
+ {id:'ara',t:'Ara sıcaklar',d:'Ocağa girmeden önce.',items:[
+  ['İçli köfte','Kızartma, 2 adet',160,{}],
+  ['Paçanga böreği','Pastırma, kaşar, domates',170,{}],
+  ['Közde hellim','Kekik ve zeytinyağı ile',180,{v:1}]]},
+ {id:'kebaplar',t:'Közde kebaplar',d:'Tümü lavaş, köz domates ve biberle gelir.',feature:['Adana kebap','Zırh kıyması, kuyruk yağı ve pul biber. Ustanın elinden şişe dizilir.',520,'adana'],items:[
+  ['Urfa kebap','Acısız, zırh kıyması',520,{}],
+  ['Kuzu şiş','Marine kuzu but, 200 g',640,{img:'sis',chef:1}],
+  ['Tavuk kanat','Nar ekşisi ve pul biber marinasyonu',420,{hot:1}],
+  ['Karışık ızgara','İki kişilik: Adana, şiş, kanat, köfte',1450,{img:'tabak'}],
+  ['Sebze şiş','Mantar, kabak, biber, soğan',320,{v:1,img:'sebze'}]]},
+ {id:'ocak',t:'Ocaktan',d:'Pişirme süresi 25 dakika.',items:[
+  ['Kuzu pirzola','4 adet, közde',890,{chef:1,img:'kor'}],
+  ['Dana antrikot','250 g, közde',980,{}],
+  ['Beyti sarma','Lavaşa sarılı, yoğurt ve tereyağı ile',560,{}]]},
+ {id:'tatlilar',t:'Tatlılar',d:'',items:[
+  ['Künefe','Közde, Antep fıstığı ile',260,{}],
+  ['Katmer','İki kişilik, kaymaklı',320,{}],
+  ['Sütlaç','Fırında',150,{}]]},
+ {id:'icecekler',t:'İçecekler',d:'',items:[
+  ['Ayran','Yayık',60,{}],
+  ['Şalgam','Acılı / acısız',70,{}],
+  ['Türk kahvesi','Közde',90,{}],
+  ['Çay','İnce belli',35,{}]]}
+];
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const tags=o=>(o.hot?`<span class="hot" aria-label="acılı">${'🌶'.repeat(o.hot)}</span>`:'')+(o.v?'<span class="b v">vejetaryen</span>':'')+(o.chef?'<span class="b">şefin önerisi</span>':'');
+document.getElementById('tabs').innerHTML=M.map(c=>`<a href="#${c.id}">${c.t}</a>`).join('');
+document.getElementById('menu').innerHTML=M.map(c=>`<section class="cat" id="${c.id}"><h2 class="bs">${c.t}<small>${c.items.length+(c.feature?1:0)} ürün</small></h2>${c.d?`<p class="desc">${c.d}</p>`:''}`+
+ (c.feature?`<article class="feature"><img src="img/${c.feature[3]}.jpg" alt="${esc(c.feature[0])}" loading="lazy"><span class="price">${c.feature[2]}₺</span><div class="in"><div class="tag">Ustanın imzası · 🌶🌶</div><h3 class="bs">${c.feature[0]}</h3><p>${c.feature[1]}</p></div></article>`:'')+
+ c.items.map(([n,d,p,o])=>`<article class="item${o.img?' has-img':''}">${o.img?`<img src="img/${o.img}.jpg" alt="${esc(n)}" loading="lazy">`:''}<div><h3>${esc(n)} ${tags(o)}</h3><p>${esc(d)}</p></div><span class="price">${p.toLocaleString('tr-TR')}₺</span></article>`).join('')+'</section>').join('');
+// kaydırırken aktif sekmeyi güncelle
+const links=[...document.querySelectorAll('#tabs a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.hash==='#'+e.target.id));const on=links.find(l=>l.hash==='#'+e.target.id);on&&on.scrollIntoView({inline:'center',block:'nearest'});}}),{rootMargin:'-70px 0px -70% 0px'});
+document.querySelectorAll('.cat').forEach(s=>io.observe(s));
 </script>
-
 </body>
 </html>

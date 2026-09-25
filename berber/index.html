@@ -3,144 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Demir Berber — 1987'den Beri Usta İşi</title>
+<title>Demir Berber — 1987'den beri Bakırköy</title>
+<meta name="description" content="Bakırköy'de iki kuşaklık berber. Saç, sakal, ustura tıraşı. WhatsApp'tan randevu alın.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --coal:#14151A; --coal-2:#1D1F26; --bone:#EAE6DD; --red:#B33A3A; --steel:#8A93A6;
-}
+:root{--navy:#14213D;--ink:#0B1220;--red:#C1121F;--white:#F7F7F4;--brass:#B08D57;--mut:#6B7280}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Manrope',sans-serif;background:var(--coal);color:var(--bone);line-height:1.6;overflow-x:hidden}
-h1,h2,h3,.disp{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+body{font-family:'Karla',sans-serif;background:var(--white);color:var(--ink);line-height:1.6}
+img{display:block;max-width:100%}
+.a{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.01em;line-height:.95;font-weight:400}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.tag{font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
 
-/* barber pole şerit */
-.pole{height:10px;background:repeating-linear-gradient(-45deg,var(--red) 0 16px,var(--bone) 16px 32px,#3E5C76 32px 48px,var(--bone) 48px 64px)}
+/* berber direği şeridi */
+.pole{height:18px;background:repeating-linear-gradient(-45deg,var(--red) 0 16px,var(--white) 16px 32px,var(--navy) 32px 48px,var(--white) 48px 64px);background-size:90.5px 18px;animation:pole 2.4s linear infinite}
+@keyframes pole{to{background-position:90.5px 0}}
 
-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;position:sticky;top:0;background:rgba(20,21,26,.92);backdrop-filter:blur(8px);z-index:50;border-bottom:1px solid rgba(234,230,221,.08)}
-nav .logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.25rem;color:var(--bone);text-decoration:none;letter-spacing:.08em}
-nav .logo span{color:var(--red)}
-nav a.book{background:var(--red);color:#fff;text-decoration:none;padding:9px 20px;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-nav a.book:hover{background:#973030}
+nav{background:var(--navy);color:var(--white)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px}
+.logo{color:var(--white);text-decoration:none;font-size:1.6rem}
+.logo small{font-family:'Karla';font-size:.7rem;letter-spacing:.24em;color:var(--brass);display:block;margin-top:2px}
+nav .links{display:flex;gap:24px;align-items:center}
+nav .links a{color:var(--white);text-decoration:none;font-size:.9rem;opacity:.85}
+nav .links a.cta{background:var(--red);padding:10px 18px;border-radius:4px;opacity:1;font-weight:700}
+@media(max-width:720px){nav .links a:not(.cta){display:none}}
 
-.hero{padding:80px 24px 90px;max-width:1000px;margin:0 auto;position:relative}
-.hero .est{display:inline-block;border:1px solid var(--steel);color:var(--steel);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;padding:6px 14px;margin-bottom:24px}
-.hero h1{font-size:clamp(2.4rem,9.2vw,6.5rem);font-weight:700;line-height:1}
-.hero h1 .out{color:transparent;-webkit-text-stroke:1.5px var(--bone)}
-.hero p{max-width:44ch;margin-top:24px;color:var(--steel);font-size:1rem}
-.hero .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-block;padding:15px 30px;text-decoration:none;font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;transition:transform .15s}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;background:var(--navy);color:var(--white)}
+.hero .txt{padding:72px 64px 72px max(20px,calc((100vw - 1120px)/2 + 20px));display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(3rem,6vw,5.4rem);margin:16px 0 22px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{max-width:40ch;opacity:.85;font-size:1.05rem}
+.hero .img{position:relative;min-height:560px}
+.hero .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:-60px;bottom:48px;width:120px;height:120px;border-radius:50%;background:var(--brass);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:4px solid var(--navy);box-shadow:0 0 0 2px var(--brass);z-index:2}
+.badge b{font-family:'Anton';font-size:2.2rem;line-height:1}
+.badge span{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;line-height:1.3}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.hero .img{min-height:340px}.badge{left:auto;right:20px;bottom:-44px}.hero .txt{padding:56px 20px}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 26px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.95rem;border:0;cursor:pointer;transition:transform .15s}
 .btn:hover{transform:translateY(-2px)}
-.btn-red{background:var(--red);color:#fff}
-.btn-ghost{border:1.5px solid rgba(234,230,221,.35);color:var(--bone)}
+.btn.red{background:var(--red);color:#fff}
+.btn.ghost{border:2px solid rgba(247,247,244,.4);color:var(--white)}
 
-section{padding:72px 24px}
-.wrap{max-width:1000px;margin:0 auto}
-.sec-eyebrow{color:var(--red);font-size:.75rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;margin-bottom:10px}
-.sec-title{font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:36px}
+section{padding:96px 0}
+h2.a{font-size:clamp(2.6rem,7vw,4.8rem);margin:10px 0 16px}
+.lead{max-width:54ch;color:var(--mut);margin-bottom:44px}
 
-/* FİYAT TARİFESİ — eski berber panosu */
-.tarife{background:var(--coal-2);border:1px solid rgba(234,230,221,.1);padding:40px 32px;max-width:640px}
-.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid rgba(234,230,221,.08)}
-.row:last-child{border-bottom:none}
-.row .ad{font-weight:600}
-.row .ad small{display:block;color:var(--steel);font-weight:400;font-size:.78rem;text-transform:none;letter-spacing:0}
-.row .dots{flex:1;border-bottom:1px dotted rgba(234,230,221,.25);transform:translateY(-5px)}
-.row .f{font-family:'Oswald',sans-serif;font-size:1.15rem;color:var(--red);font-weight:700}
+/* emaye fiyat tabelası */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.board{background:var(--navy);color:var(--white);border-radius:18px;padding:10px;box-shadow:0 18px 40px rgba(20,33,61,.25)}
+.board-in{border:3px solid var(--white);border-radius:12px;padding:30px 30px 20px}
+.board-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--white);padding-bottom:14px;margin-bottom:6px;gap:12px;flex-wrap:wrap}
+.board-head h3{font-size:2.2rem}
+.board-head span{color:var(--brass);font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase}
+.row{display:grid;grid-template-columns:1fr auto;column-gap:16px;padding:14px 0;border-bottom:1px dashed rgba(247,247,244,.25)}
+.row:last-child{border:0}
+.row b{font-size:1.08rem;grid-column:1;grid-row:1}
+.row small{color:#AEB6C6;grid-column:1;grid-row:2}
+.row .p{font-family:'Anton';font-size:1.7rem;grid-column:2;grid-row:1 / span 2;align-self:center}
+@media(max-width:820px){.cols{grid-template-columns:1fr}.board-in{padding:22px 16px 12px}}
 
-/* USTALAR */
-.ustalar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.usta{background:var(--coal-2);border:1px solid rgba(234,230,221,.1);padding:28px}
-.usta .avatar{width:64px;height:64px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:16px}
-.usta h3{font-size:1.05rem;margin-bottom:4px}
-.usta p{color:var(--steel);font-size:.85rem}
+/* ustalar */
+.masters{background:#fff}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:820px){.mgrid{grid-template-columns:1fr}}
+.m{border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:var(--white)}
+.m img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.m div{padding:20px}
+.m h3{font-size:1.9rem}
+.m p{color:var(--mut);font-size:.95rem;margin-top:6px}
+.m .yr{display:inline-block;margin-top:12px;background:var(--navy);color:var(--white);font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:3px;letter-spacing:.1em}
 
-/* SAATLER + CTA */
-.saat{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-@media(max-width:720px){.saat{grid-template-columns:1fr}}
-.saat table{width:100%;border-collapse:collapse;font-size:.92rem}
-.saat td{padding:11px 0;border-bottom:1px solid rgba(234,230,221,.08)}
-.saat td:last-child{text-align:right;color:var(--steel)}
-.saat .kapali{color:var(--red)}
-.wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:15px 28px;text-decoration:none;font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
-.saat .box{background:var(--coal-2);border:1px solid rgba(234,230,221,.1);padding:36px}
-.saat .box p{color:var(--steel);margin:12px 0 24px;font-size:.92rem}
-
-footer{padding:28px 24px;text-align:center;color:var(--steel);font-size:.8rem;border-top:1px solid rgba(234,230,221,.08)}
-a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-@media(prefers-reduced-motion:no-preference){
-  .hero>*{animation:up .6s ease both}
-  .hero p{animation-delay:.1s}.hero .cta-row{animation-delay:.2s}
-  @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-}
+/* randevu */
+.book{background:var(--ink);color:var(--white)}
+.book .lead{color:#AEB6C6}
+.form{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:14px;align-items:end;background:#131C2E;padding:22px;border-radius:12px;border:1px solid #243049}
+@media(max-width:820px){.form{grid-template-columns:1fr}}
+.form label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:6px}
+.form select{width:100%;font:inherit;font-size:1rem;padding:13px 12px;border-radius:6px;border:1px solid #2F3B55;background:var(--ink);color:var(--white)}
+.addr{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
+@media(max-width:820px){.addr{grid-template-columns:1fr}}
+.addr div{border-top:3px solid var(--red);padding-top:16px}
+.addr b{display:block;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:6px}
+footer{background:var(--navy);color:#AEB6C6;font-size:.8rem;padding:22px 0}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){.pole{animation:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-
-<div class="pole"></div>
-<nav>
-  <a class="logo" href="#">Demir<span>.</span>Berber</a>
-  <a class="book" href="#randevu">Randevu Al</a>
-</nav>
+<div class="pole" aria-hidden="true"></div>
+<nav><div class="wrap"><a class="logo a" href="#">Demir Berber<small>Bakırköy · 1987</small></a><div class="links"><a href="#fiyatlar">Fiyatlar</a><a href="#ustalar">Ustalar</a><a class="cta" href="#randevu">Randevu al</a></div></div></nav>
 
 <header class="hero">
-  <div class="est">Est. 1987 · Üsküdar</div>
-  <h1>Usta işi tıraş,<br><span class="out">iki kuşaktır.</span></h1>
-  <p>Makine değil makas, acele değil özen. Demir Berber'de her tıraş sıcak havlu ile başlar, kolonya ile biter — 1987'den beri aynı özenle.</p>
-  <div class="cta-row">
-    <a class="btn btn-red" href="#randevu">Randevu Al</a>
-    <a class="btn btn-ghost" href="#tarife">Fiyat Tarifesi</a>
+  <div class="txt">
+    <div class="tag">Baba-oğul berber dükkânı</div>
+    <h1 class="a">Usta işi tıraş,<br><em>iki kuşaktır.</em></h1>
+    <p>Hasan Usta ilk makasını 1987'de bu dükkânda eline aldı. Bugün oğlu Emre ile aynı koltukta, aynı titizlikle çalışıyor. Sıcak havlu, ustura ve sohbet dahil.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px"><a class="btn red" href="#randevu">Randevu al</a><a class="btn ghost" href="#fiyatlar">Fiyat listesi</a></div>
   </div>
+  <div class="img"><img src="img/hero.jpg" alt="Tuğla duvarlı, sarı ışıklı berber salonu" fetchpriority="high"><div class="badge"><b>1987</b><span>Aynı<br>adreste</span></div></div>
 </header>
+<div class="pole" aria-hidden="true"></div>
 
-<section id="tarife">
+<section id="fiyatlar">
   <div class="wrap">
-    <div class="sec-eyebrow">Tarife</div>
-    <h2 class="sec-title">Fiyat Panosu</h2>
-    <div class="tarife">
-      <div class="row"><span class="ad disp">Saç Tıraşı<small>Yıkama ve fön dahil</small></span><span class="dots"></span><span class="f">350₺</span></div>
-      <div class="row"><span class="ad disp">Sakal Tıraşı<small>Sıcak havlu · ustura</small></span><span class="dots"></span><span class="f">250₺</span></div>
-      <div class="row"><span class="ad disp">Saç + Sakal<small>Komple bakım</small></span><span class="dots"></span><span class="f">500₺</span></div>
-      <div class="row"><span class="ad disp">Çocuk Tıraşı<small>12 yaş altı</small></span><span class="dots"></span><span class="f">250₺</span></div>
-      <div class="row"><span class="ad disp">Damat Paketi<small>Cilt bakımı · masaj · tıraş</small></span><span class="dots"></span><span class="f">900₺</span></div>
+    <div class="tag">Fiyat listesi · Eylül 2026</div>
+    <h2 class="a">Tabelada ne yazıyorsa o.</h2>
+    <p class="lead">Sürpriz ekstra yok. Süreler ortalamadır; aceleniz varsa randevu alırken yazın.</p>
+    <div class="cols">
+      <div class="board"><div class="board-in">
+        <div class="board-head"><h3 class="a">Saç</h3><span>Süre · Fiyat</span></div>
+        <div class="row"><b>Klasik saç kesimi</b><small>30 dk · yıkama dahil</small><span class="p">400₺</span></div>
+        <div class="row"><b>Makas kesim</b><small>45 dk · uzun saçlar için</small><span class="p">500₺</span></div>
+        <div class="row"><b>Çocuk kesimi</b><small>20 dk · 12 yaş altı</small><span class="p">250₺</span></div>
+        <div class="row"><b>Saç + sakal</b><small>50 dk · en çok tercih edilen</small><span class="p">600₺</span></div>
+      </div></div>
+      <div class="board"><div class="board-in">
+        <div class="board-head"><h3 class="a">Sakal &amp; bakım</h3><span>Süre · Fiyat</span></div>
+        <div class="row"><b>Ustura tıraşı</b><small>30 dk · sıcak havlu ile</small><span class="p">300₺</span></div>
+        <div class="row"><b>Sakal şekillendirme</b><small>20 dk</small><span class="p">250₺</span></div>
+        <div class="row"><b>Damat tıraşı</b><small>90 dk · maske ve bakım dahil</small><span class="p">1.500₺</span></div>
+        <div class="row"><b>Yüz bakımı</b><small>25 dk · buhar ve maske</small><span class="p">350₺</span></div>
+      </div></div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="ustalar" class="masters">
   <div class="wrap">
-    <div class="sec-eyebrow">Ekip</div>
-    <h2 class="sec-title">Ustalar</h2>
-    <div class="ustalar">
-      <div class="usta"><div class="avatar">HD</div><h3>Hasan Demir</h3><p>Kurucu usta · 39 yıl deneyim</p></div>
-      <div class="usta"><div class="avatar">MD</div><h3>Mert Demir</h3><p>İkinci kuşak · fade &amp; modern kesim</p></div>
-      <div class="usta"><div class="avatar">EK</div><h3>Emre Kaya</h3><p>Sakal tasarımı · ustura uzmanı</p></div>
+    <div class="tag">Koltuktakiler</div>
+    <h2 class="a">Üç koltuk, üç usta.</h2>
+    <p class="lead">Randevu alırken ustanızı seçebilirsiniz. Hangisini seçerseniz seçin, kesim Hasan Usta'nın usulüyle yapılır.</p>
+    <div class="mgrid">
+      <article class="m"><img src="img/detay.jpg" alt="Tezgâhta dizili tıraş makineleri" loading="lazy"><div><h3 class="a">Hasan Usta</h3><p>Ustura tıraşı ve klasik kesimler. Dükkânın kurucusu.</p><span class="yr">1987'DEN BERİ</span></div></article>
+      <article class="m"><img src="img/kesim.jpg" alt="Makasla saç kesimi" loading="lazy"><div><h3 class="a">Emre Demir</h3><p>Fade, skin fade ve modern kesimler. Sakal tasarımı.</p><span class="yr">2012'DEN BERİ</span></div></article>
+      <article class="m"><img src="img/alet.jpg" alt="Berber makası, tarak ve tıraş makinesi" loading="lazy"><div><h3 class="a">Kerem Yıldız</h3><p>Çocuk kesimleri ve uzun saç. Hafta sonları dükkânda.</p><span class="yr">2020'DEN BERİ</span></div></article>
     </div>
   </div>
 </section>
 
-<section id="randevu">
-  <div class="wrap saat">
-    <div>
-      <div class="sec-eyebrow">Çalışma Saatleri</div>
-      <h2 class="sec-title">Ne Zaman Buradayız?</h2>
-      <table>
-        <tr><td>Pazartesi – Cuma</td><td>09.00 – 20.00</td></tr>
-        <tr><td>Cumartesi</td><td>09.00 – 21.00</td></tr>
-        <tr><td>Pazar</td><td class="kapali">Kapalı</td></tr>
-      </table>
+<section id="randevu" class="book">
+  <div class="wrap">
+    <div class="tag">Randevu</div>
+    <h2 class="a">Seç, gönder, gel.</h2>
+    <p class="lead">Aşağıdan seçimlerinizi yapın; WhatsApp'ta mesajınız hazır açılır. Genellikle 15 dakika içinde dönüyoruz.</p>
+    <div class="form">
+      <div><label for="hizmet">Hizmet</label><select id="hizmet"><option>Klasik saç kesimi</option><option>Saç + sakal</option><option>Ustura tıraşı</option><option>Sakal şekillendirme</option><option>Çocuk kesimi</option><option>Damat tıraşı</option></select></div>
+      <div><label for="usta">Usta</label><select id="usta"><option>Fark etmez</option><option>Hasan Usta</option><option>Emre Demir</option><option>Kerem Yıldız</option></select></div>
+      <div><label for="gun">Gün</label><select id="gun"></select></div>
+      <a class="btn red" id="gonder" href="https://wa.me/905000000000">WhatsApp'ta gönder</a>
     </div>
-    <div class="box">
-      <h3 class="disp">Sıra beklemeyin.</h3>
-      <p>WhatsApp'tan yazın, size en yakın boş saati ayıralım. Validebağ Cd. No:12, Üsküdar.</p>
-      <a class="wa" href="https://wa.me/905000000000">💬 WhatsApp Randevu</a>
+    <div class="addr">
+      <div><b>Adres</b>İstanbul Cd. No:112, Bakırköy — İstanbul<br><a href="https://maps.google.com/?q=Bakırköy+İstanbul+Caddesi" style="color:var(--white)">Haritada aç</a></div>
+      <div><b>Çalışma saatleri</b>Pazartesi – Cumartesi 09.00 – 21.00<br>Pazar kapalı</div>
     </div>
   </div>
 </section>
-
-<footer>© 2026 Demir Berber — Bu site bir tasarım demosudur.</footer>
-<div class="pole"></div>
-
+<div class="pole" aria-hidden="true"></div>
+<footer><div class="wrap"><span>© 2026 Demir Berber</span><span>Bu site bir tasarım demosudur · Fotoğraflar: Unsplash</span></div></footer>
+<script>
+const gun=document.getElementById('gun'),fmt=new Intl.DateTimeFormat('tr-TR',{weekday:'long',day:'numeric',month:'long'});
+for(let i=0,d=new Date();gun.options.length<6;i++){const x=new Date(d);x.setDate(d.getDate()+i);if(x.getDay()!==0)gun.add(new Option(i===0?'Bugün':fmt.format(x)));}
+document.getElementById('gonder').addEventListener('click',e=>{
+  const v=id=>document.getElementById(id).value;
+  e.currentTarget.href='https://wa.me/905000000000?text='+encodeURIComponent(`Merhaba, ${v('gun')} için ${v('hizmet')} randevusu almak istiyorum. Usta: ${v('usta')}.`);
+});
+</script>
 </body>
 </html>

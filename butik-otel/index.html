@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mavi Kapı Butik Otel — Kaş</title>
+<meta name="description" content="Kaş limanına yürüme mesafesinde 9 odalı butik otel. Deniz manzaralı odalar, terasta kahvaltı, doğrudan rezervasyon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--aegean:#0E4C75;--deep:#10212E;--white:#FBFBF8;--bougain:#B8336A;--stone:#D8CBB5;--mut:#5B6B78;--line:#E6E2DA}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--deep);line-height:1.65}
+img{display:block;max-width:100%}
+.m{font-family:'Marcellus',serif;font-weight:400;letter-spacing:.01em;line-height:1.08}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.lbl{font-size:.74rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--bougain)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--bougain);outline-offset:3px}
+.btn{font:inherit;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:2px;text-decoration:none;font-weight:600;font-size:.92rem;letter-spacing:.04em;border:0;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.b{background:var(--bougain);color:#fff}
+.btn.a{background:var(--aegean);color:#fff}
+
+.hero{position:relative;height:100svh;min-height:620px;color:#fff;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,33,46,.55),rgba(16,33,46,.1) 25%,rgba(16,33,46,.6) 55%,rgba(16,33,46,.92))}
+.hero h1,.hero p{text-shadow:0 2px 24px rgba(16,33,46,.6)}
+nav{position:absolute;inset:0 0 auto;z-index:3}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:24px}
+.logo{color:#fff;text-decoration:none;font-size:1.5rem;display:flex;align-items:center;gap:12px}
+.door{width:22px;height:30px;border-radius:11px 11px 0 0;background:#3E8FC4;border:2px solid #fff;position:relative}
+.door::after{content:"";position:absolute;right:3px;top:15px;width:3px;height:3px;border-radius:50%;background:#fff}
+nav .links{display:flex;gap:28px}
+nav .links a{color:#fff;text-decoration:none;font-size:.92rem;letter-spacing:.04em}
+@media(max-width:760px){nav .links{display:none}}
+.hero .in{position:absolute;left:0;right:0;bottom:180px;z-index:2}
+.hero h1{font-size:clamp(3rem,8.6vw,7.6rem)}
+.hero p{max-width:44ch;font-size:1.08rem;opacity:.92;margin-top:14px}
+@media(max-width:760px){.hero .in{bottom:330px}.hero p{font-size:.95rem}}
+
+/* rezervasyon çubuğu */
+.bookbar{position:absolute;left:0;right:0;bottom:36px;z-index:3}
+.bar{display:grid;grid-template-columns:1fr 1fr 1fr auto;background:var(--white);color:var(--deep);border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.3);overflow:hidden}
+.bar label{display:block;padding:14px 20px;border-right:1px solid var(--line)}
+.bar label span{display:block;font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.bar input,.bar select{font:inherit;font-size:1rem;border:0;background:none;color:var(--deep);width:100%;padding:2px 0}
+.bar .btn{border-radius:0;padding:0 30px}
+.bar small{grid-column:1 / -1;padding:8px 20px;background:#F1EEE7;font-size:.8rem;color:var(--mut)}
+@media(max-width:760px){.bar{grid-template-columns:1fr 1fr}.bar label:nth-child(3){grid-column:1 / -1;border-top:1px solid var(--line)}.bar .btn{grid-column:1 / -1;padding:16px}.bar label{border-bottom:1px solid var(--line)}}
+
+section{padding:104px 0}
+h2.m{font-size:clamp(2.2rem,5vw,3.6rem);margin:12px 0 16px}
+.lead{max-width:58ch;color:var(--mut);margin-bottom:44px}
+
+.intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:900px){.intro .wrap{grid-template-columns:1fr}}
+.intro .pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.intro .pair img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:120px 120px 4px 4px}
+.intro .pair img:last-child{margin-top:48px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;border-top:1px solid var(--line);padding-top:22px}
+.nums b{display:block;font-family:'Marcellus';font-size:2rem;color:var(--aegean)}
+.nums span{font-size:.82rem;color:var(--mut)}
+
+.rooms{background:#F1EEE7}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:900px){.rgrid{grid-template-columns:1fr}}
+.room{background:var(--white);border-radius:4px;overflow:hidden}
+.room img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.room div{padding:22px}
+.room h3{font-size:1.6rem}
+.room .meta{display:flex;gap:14px;font-size:.84rem;color:var(--mut);margin:6px 0 14px;flex-wrap:wrap}
+.room .pr{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px}
+.room .pr b{font-family:'Marcellus';font-size:1.5rem;color:var(--aegean)}
+.room .pr small{color:var(--mut)}
+.room button{font:inherit;font-size:.86rem;font-weight:600;color:var(--bougain);background:none;border:0;cursor:pointer;letter-spacing:.04em}
+
+.near{background:var(--aegean);color:#DCE9F2}
+.near h2{color:#fff}
+.near .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+@media(max-width:900px){.near .wrap{grid-template-columns:1fr}}
+.near img{border-radius:4px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.near ul{list-style:none}
+.near li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.near li b{color:#fff;font-weight:500}
+.near li span{font-size:.88rem;white-space:nowrap}
+
+.stay{text-align:center}
+.stay blockquote{font-family:'Marcellus';font-size:clamp(1.5rem,3.4vw,2.3rem);max-width:30ch;margin:0 auto;color:var(--aegean);line-height:1.3}
+.stay cite{display:block;margin-top:16px;font-style:normal;color:var(--mut);font-size:.9rem}
+.stars{color:var(--bougain);letter-spacing:4px;margin-bottom:18px}
+footer{background:var(--deep);color:#9FB1C0;padding:48px 0 28px;font-size:.88rem}
+footer .grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px;margin-bottom:28px}
+@media(max-width:760px){footer .grid{grid-template-columns:1fr}}
+footer b{color:#fff;display:block;margin-bottom:6px;font-weight:500}
+footer .small{border-top:1px solid #22384A;padding-top:18px;font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <img src="img/hero.jpg" alt="Gün batımında Kaş limanı ve teknelerin arkasında beyaz evler" fetchpriority="high">
+  <nav><div class="wrap"><a class="logo m" href="#"><span class="door" aria-hidden="true"></span>Mavi Kapı</a><div class="links"><a href="#otel">Otel</a><a href="#odalar">Odalar</a><a href="#kas">Kaş'ta</a><a href="#iletisim">İletişim</a></div></div></nav>
+  <div class="in"><div class="wrap">
+    <div class="lbl" style="color:#F7B7D0">Kaş · Antalya · 9 oda</div>
+    <h1 class="m">Limana üç dakika,<br>kalabalığa uzak.</h1>
+    <p>Eski bir taş evden dönüştürülmüş, dokuz odalı bir aile oteli. Kahvaltı begonvillerin altında, terasta.</p>
+  </div></div>
+  <div class="bookbar"><div class="wrap">
+    <form class="bar" id="book">
+      <label><span>Giriş</span><input type="date" id="in" required></label>
+      <label><span>Çıkış</span><input type="date" id="out" required></label>
+      <label><span>Oda</span><select id="room"><option>Deniz manzaralı</option><option>Bahçe odası</option><option>Teras süit</option></select></label>
+      <button class="btn b" type="submit">Müsaitlik sor</button>
+      <small id="note">Doğrudan rezervasyonda kahvaltı dahil, aracı komisyonu yok.</small>
+    </form>
+  </div></div>
+</header>
+
+<section id="otel" class="intro">
+  <div class="wrap">
+    <div>
+      <div class="lbl">Otel</div>
+      <h2 class="m">Mavi kapıdan girince<br>yavaşlarsınız.</h2>
+      <p class="lead" style="margin-bottom:0">1930'lardan kalma taş ev, 2019'da aslına sadık kalınarak restore edildi. Odaların çoğundan Meis adası görünür. Resepsiyonda Ayşe Hanım, mutfakta annesi; kahvaltıdaki reçellerin hepsi ev yapımı.</p>
+      <div class="nums"><div><b>9</b><span>oda</span></div><div><b>3 dk</b><span>limana yürüyüş</span></div><div><b>1930</b><span>taş ev</span></div></div>
+    </div>
+    <div class="pair"><img src="img/teras.jpg" alt="Kaş'ın kırmızı kiremitli evlerine bakan teras" loading="lazy"><img src="img/pencere.jpg" alt="Açık pencereden görünen deniz ve ada" loading="lazy"></div>
+  </div>
+</section>
+
+<section id="odalar" class="rooms">
+  <div class="wrap">
+    <div class="lbl">Odalar</div>
+    <h2 class="m">Üç oda tipi</h2>
+    <p class="lead">Fiyatlar iki kişilik, kahvaltı dahil, gecelik. Temmuz–Ağustos en az 3 gece.</p>
+    <div class="rgrid">
+      <article class="room"><img src="img/oda-deniz.jpg" alt="Balkonu denize açılan aydınlık oda" loading="lazy"><div><h3 class="m">Deniz manzaralı</h3><div class="meta"><span>22 m²</span><span>Balkon</span><span>Çift kişilik</span></div><div class="pr"><div><b>4.800₺</b> <small>/ gece</small></div><button data-r="Deniz manzaralı">Bu odayı sor →</button></div></div></article>
+      <article class="room"><img src="img/oda-klasik.jpg" alt="Renkli kilimli, geleneksel dokulu oda" loading="lazy"><div><h3 class="m">Bahçe odası</h3><div class="meta"><span>18 m²</span><span>Bahçeye çıkış</span><span>İki ayrı yatak</span></div><div class="pr"><div><b>3.600₺</b> <small>/ gece</small></div><button data-r="Bahçe odası">Bu odayı sor →</button></div></div></article>
+      <article class="room"><img src="img/suit.jpg" alt="Deniz manzaralı, şemsiyeli özel teras" loading="lazy"><div><h3 class="m">Teras süit</h3><div class="meta"><span>34 m²</span><span>Özel teras</span><span>Oturma alanı</span></div><div class="pr"><div><b>7.200₺</b> <small>/ gece</small></div><button data-r="Teras süit">Bu odayı sor →</button></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="kas" class="near">
+  <div class="wrap">
+    <img src="img/koy.jpg" alt="Kaş'ın yukarıdan görünümü" loading="lazy">
+    <div>
+      <div class="lbl" style="color:#F7B7D0">Kaş'ta</div>
+      <h2 class="m">Otelden yürüyerek</h2>
+      <ul>
+        <li><b>Kaş limanı ve balıkçılar</b><span>3 dk yürüyüş</span></li>
+        <li><b>Antik tiyatro, gün batımı</b><span>8 dk yürüyüş</span></li>
+        <li><b>Büyük Çakıl plajı</b><span>12 dk yürüyüş</span></li>
+        <li><b>Meis adası tekne seferi</b><span>limandan 20 dk</span></li>
+        <li><b>Kaputaş plajı</b><span>20 dk araçla</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="stay">
+  <div class="wrap">
+    <div class="stars" aria-label="5 üzerinden 5">★★★★★</div>
+    <blockquote>"Sabah terasta Meis'e bakarak kahvaltı ettik, akşam limana yürüdük. Arabayı üç gün hiç kullanmadık."</blockquote>
+    <cite>Zeynep &amp; Can, Ağustos 2026 · doğrudan rezervasyon</cite>
+  </div>
+</section>
+
+<footer id="iletisim"><div class="wrap">
+  <div class="grid">
+    <div><b class="m" style="font-size:1.4rem">Mavi Kapı Butik Otel</b>Andifli Mah. Uzunçarşı Sk. No:14, Kaş / Antalya<br>Nisan – Ekim arası açık</div>
+    <div><b>Rezervasyon</b><a style="color:#fff" href="https://wa.me/905000000000">WhatsApp</a><br>+90 242 000 00 00</div>
+    <div><b>Giriş / çıkış</b>Giriş 14.00<br>Çıkış 11.00</div>
+  </div>
+  <div class="small"><span>© 2026 Mavi Kapı Butik Otel</span><span>Bu site bir tasarım demosudur · Fotoğraflar: Unsplash</span></div>
+</div></footer>
+<script>
+const $=id=>document.getElementById(id),iso=d=>d.toISOString().slice(0,10);
+const t=new Date();t.setDate(t.getDate()+14);const o=new Date(t);o.setDate(o.getDate()+3);
+$('in').value=iso(t);$('out').value=iso(o);$('in').min=iso(new Date());
+const nights=()=>Math.round((new Date($('out').value)-new Date($('in').value))/864e5);
+const upd=()=>{const n=nights();$('note').textContent=n>0?`${n} gece · Doğrudan rezervasyonda kahvaltı dahil, aracı komisyonu yok.`:'Çıkış tarihi girişten sonra olmalı.'};
+['in','out'].forEach(i=>$(i).addEventListener('change',()=>{if(i==='in'){$('out').min=$('in').value}upd()}));upd();
+$('book').addEventListener('submit',e=>{e.preventDefault();const n=nights();if(n<1){upd();return}
+ const f=new Intl.DateTimeFormat('tr-TR',{day:'numeric',month:'long'});
+ const msg=`Merhaba, ${f.format(new Date($('in').value))} – ${f.format(new Date($('out').value))} (${n} gece) için ${$('room').value} odanız müsait mi?`;
+ window.open('https://wa.me/905000000000?text='+encodeURIComponent(msg),'_blank','noopener')});
+document.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{$('room').value=b.dataset.r;window.scrollTo({top:0,behavior:'smooth'});$('in').focus({preventScroll:true})}));
+</script>
+</body>
+</html>

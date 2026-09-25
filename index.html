@@ -45,6 +45,11 @@ h2.sec{font-family:'Fraunces',serif;font-size:1.7rem;margin-bottom:6px}
 .card:hover{transform:translateY(-3px);border-color:var(--acc)}
 .card h3{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;margin-bottom:8px}
 .card p{color:var(--mut);font-size:.9rem}
+.card.demo{padding:0;overflow:hidden}
+.card.demo img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+.card.demo .tag{margin:20px 22px 10px}
+.card.demo h3,.card.demo p,.card.demo .go{margin-left:22px;margin-right:22px}
+.card.demo .go{margin-bottom:22px}
 .card .go{margin-top:14px;font-size:.85rem;font-weight:800;color:var(--acc)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;counter-reset:s}
 .step{border-left:2px solid var(--acc);padding:4px 0 4px 16px}
@@ -173,9 +178,12 @@ footer{text-align:center;color:var(--mut);font-size:.78rem;padding-bottom:30px}
     <h2 class="sec">Web tasarım örnekleri</h2>
     <p class="sub">Küçük işletmeler için hazırladığım örnek tek sayfa siteler. Telefonunuzdan açıp bakın.</p>
     <div class="grid">
-      <a class="card" href="kafe/"><span class="tag">Kafe</span><h3>Kavella Kahve</h3><p>Menü, hikâye, konum ve WhatsApp iletişim.</p><div class="go">Demoyu Gör →</div></a>
-      <a class="card" href="berber/"><span class="tag">Berber</span><h3>Demir Berber</h3><p>Fiyat panosu, ustalar ve WhatsApp randevu.</p><div class="go">Demoyu Gör →</div></a>
-      <a class="card" href="qr-menu/"><span class="tag">Restoran · QR Menü</span><h3>Meşale Ocakbaşı</h3><p>Masadaki QR koddan açılan, kategori sekmeli menü.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card demo" href="kafe/"><img src="img/demo-kafe.jpg" alt="Kavella Kahve sitesinin ekran görüntüsü" loading="lazy"><span class="tag">Kafe · Kavurucu</span><h3>Kavella Kahve</h3><p>Haftanın çekirdekleri etiket kartlarıyla, bar menüsü, bugünün çalışma saatini vurgulayan ziyaret bölümü.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card demo" href="berber/"><img src="img/demo-berber.jpg" alt="Demir Berber sitesinin ekran görüntüsü" loading="lazy"><span class="tag">Berber · Randevu</span><h3>Demir Berber</h3><p>Emaye tabela fiyat listesi, ustalar ve hizmet, usta, gün seçip WhatsApp'a hazır mesaj gönderen randevu formu.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card demo" href="qr-menu/"><img src="img/demo-qrmenu.jpg" alt="Meşale Ocakbaşı QR menüsünün ekran görüntüsü" loading="lazy"><span class="tag">Restoran · QR Menü</span><h3>Meşale Ocakbaşı</h3><p>Kaydırdıkça kendini güncelleyen kategori sekmeleri, ürün fotoğrafları, garson çağır ve hesap iste butonları.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card demo" href="pilates/"><img src="img/demo-pilates.jpg" alt="Denge Pilates sitesinin ekran görüntüsü" loading="lazy"><span class="tag">Stüdyo · Ders programı</span><h3>Denge Pilates</h3><p>Gün ve ders türüne göre filtrelenen haftalık program, doluluk göstergesi, tek tıkla yer ayırtma.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card demo" href="dis-klinigi/"><img src="img/demo-dis.jpg" alt="Beyaz Ada Diş Kliniği sitesinin ekran görüntüsü" loading="lazy"><span class="tag">Klinik · Randevu</span><h3>Beyaz Ada Diş Kliniği</h3><p>Tedavi seçici (süre, seans, adımlar), ilk muayene akışı, hekim kadrosu ve randevu.</p><div class="go">Demoyu Gör →</div></a>
+      <a class="card demo" href="butik-otel/"><img src="img/demo-otel.jpg" alt="Mavi Kapı Butik Otel sitesinin ekran görüntüsü" loading="lazy"><span class="tag">Otel · Rezervasyon</span><h3>Mavi Kapı Butik Otel</h3><p>Tarih ve oda seçip gece sayısını hesaplayan, WhatsApp'a müsaitlik sorusu gönderen rezervasyon çubuğu.</p><div class="go">Demoyu Gör →</div></a>
     </div>
   </section>
 
