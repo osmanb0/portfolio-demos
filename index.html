@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Osman Berk — Yazılım Portföyü</title>
 <meta name="description" content="Yapay zekâ entegrasyonu, Chrome uzantıları, otomasyon ve web siteleri. Canlı ürünler ve örnek çalışmalar.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Fraunces:opsz,wght@9..144,600;9..144,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/manrope.css"><link rel="stylesheet" href="fonts/fraunces.css">
 <style>
 :root{--bg:#0F1115;--card:#181B22;--ink:#EDEAE4;--mut:#8B8F99;--acc:#5BC0BE;--line:rgba(237,234,228,.08)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -26,6 +25,17 @@ h2.sec{font-family:'Fraunces',serif;font-size:1.7rem;margin-bottom:6px}
 .sub{color:var(--mut);font-size:.95rem;margin-bottom:24px}
 .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
 .svc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.svc{display:block;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+.svc:hover{transform:translateY(-3px);border-color:var(--acc)}
+.svc .go{display:block;margin-top:12px;font-size:.82rem;font-weight:800;color:var(--acc)}
+.feature{display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:center;background:linear-gradient(135deg,#123028,#0F1A17);border:1px solid rgba(91,192,190,.3);border-radius:20px;padding:28px;text-decoration:none;color:var(--ink);transition:border-color .15s}
+.feature:hover{border-color:var(--acc)}
+.feature img{width:100%;border-radius:12px;display:block;border:1px solid var(--line)}
+.feature h3{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;margin-bottom:8px}
+.feature p{color:var(--mut);font-size:.93rem}
+.feature ul{list-style:none;margin-top:12px;font-size:.88rem}
+.feature li{padding-left:18px;position:relative;margin-bottom:4px}
+.feature li::before{content:"→";position:absolute;left:0;color:var(--acc)}
 .svc h3{font-size:1rem;margin-bottom:6px}
 .svc p{color:var(--mut);font-size:.88rem}
 .prod{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:18px}
@@ -59,7 +69,7 @@ h2.sec{font-family:'Fraunces',serif;font-size:1.7rem;margin-bottom:6px}
 .cta h2{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:8px}
 .cta p{color:var(--mut);font-size:.92rem;margin-bottom:20px}
 footer{text-align:center;color:var(--mut);font-size:.78rem;padding-bottom:30px}
-@media (max-width:720px){.prod{grid-template-columns:1fr;padding:18px}}
+@media (max-width:720px){.prod,.feature{grid-template-columns:1fr;padding:18px}}
 </style>
 </head>
 <body>
@@ -67,22 +77,40 @@ footer{text-align:center;color:var(--mut);font-size:.78rem;padding-bottom:30px}
   <header>
     <div class="eyebrow">Yazılım Uzmanı · Osman Berk Yavuzdoğan</div>
     <h1>Elle yaptığınız işi<br>yazılıma devredin.</h1>
-    <p>Yapay zekâ entegrasyonu, Chrome uzantıları, otomasyon ve hızlı web siteleri geliştiriyorum. Ürünler bölümündekiler hayali örnek değil; kendim tasarlayıp kodladığım, çalışan yazılımlar.</p>
+    <p>Web sitesi, WhatsApp botu, Chrome eklentisi ve mobil uygulama geliştiriyorum. Aşağıdakiler hayali örnek değil; kendim tasarlayıp kodladığım, çalışan yazılımlar. Çoğunu bu sayfadan hemen deneyebilirsiniz.</p>
     <div class="btns">
       <a class="btn" href="https://bionluk.com/osmanby0" rel="noopener">Bionluk'tan Ulaşın</a>
-      <a class="btn ghost" href="#urunler">Ürünleri Gör ↓</a>
+      <a class="btn ghost" href="#whatsapp">Canlı demoyu dene ↓</a>
     </div>
   </header>
 
   <section>
     <h2 class="sec">Neler yapıyorum?</h2>
-    <p class="sub">İhtiyacınızı yazın; hangisinin işinizi çözeceğini birlikte netleştirelim.</p>
+    <p class="sub">Her hizmetin altında gerçek bir örnek var. İhtiyacınızı yazın; hangisinin işinizi çözeceğini birlikte netleştirelim.</p>
     <div class="services">
-      <div class="svc"><h3>🤖 Yapay zekâ entegrasyonu</h3><p>E-posta yanıtlama, metin/doküman özetleme, form ve CV işleme gibi işleri ChatGPT/Claude ile otomatikleştiririm.</p></div>
-      <div class="svc"><h3>🧩 Chrome uzantısı</h3><p>Her gün aynı siteyle uğraşıyorsanız, o işi tek tıka indiren özel bir tarayıcı eklentisi.</p></div>
-      <div class="svc"><h3>⚙️ Otomasyon &amp; bot</h3><p>Excel, PDF ve web verisiyle yapılan tekrarlı işler için script ve botlar.</p></div>
-      <div class="svc"><h3>🌐 Web sitesi &amp; araç</h3><p>Hızlı, mobil uyumlu tanıtım siteleri ve tarayıcıda çalışan web araçları.</p></div>
+      <a class="svc" href="#web"><h3>🌐 Web sitesi</h3><p>Mobil öncelikli tanıtım siteleri, QR menü, randevu ve rezervasyon formları.</p><span class="go">6 örnek site →</span></a>
+      <a class="svc" href="#whatsapp"><h3>💬 WhatsApp botu</h3><p>Randevu alan, hatırlatan, sipariş ve soru karşılayan bot + yönetim paneli.</p><span class="go">Canlı demo →</span></a>
+      <a class="svc" href="#urunler"><h3>🧩 Chrome eklentisi</h3><p>Her gün aynı sitede yaptığınız işi tek tıka indiren eklentiler; yapay zekâ destekli olabilir.</p><span class="go">2 eklenti →</span></a>
+      <a class="svc" href="#mobil"><h3>📱 Mobil uygulama</h3><p>Flutter ile Android ve iOS uygulaması: tasarım, geliştirme, mağazaya yükleme.</p><span class="go">Uygulamayı gör →</span></a>
     </div>
+  </section>
+
+  <section id="whatsapp">
+    <a class="feature" href="whatsapp-bot/">
+      <img src="img/demo-whatsapp.jpg" alt="WhatsApp randevu botu demosu: sohbet ve işletme paneli yan yana" loading="lazy">
+      <div>
+        <span class="tag">WhatsApp Botu · Canlı demo</span>
+        <h3>Randevu Asistanı</h3>
+        <p>Müşteri WhatsApp'tan yazar; bot boş saatleri gösterir, randevuyu kaydeder, bir gün önce hatırlatır. İşletme her şeyi web panelinden izler. Demoda sohbetten randevu alın, panele anında düştüğünü görün.</p>
+        <ul>
+          <li>Randevu alma, iptal, erteleme ve otomatik hatırlatma</li>
+          <li>Çakışma koruması: aynı saate iki randevu verilmez</li>
+          <li>Günlük liste, haftalık ciro ve müşteri geçmişi olan panel</li>
+        </ul>
+        <div class="stack"><span>Node.js</span><span>TypeScript</span><span>SQLite</span><span>WhatsApp Business API</span></div>
+        <span class="btn" style="margin-top:20px">Demoyu dene →</span>
+      </div>
+    </a>
   </section>
 
   <section id="urunler">
@@ -137,7 +165,7 @@ footer{text-align:center;color:var(--mut);font-size:.78rem;padding-bottom:30px}
       </div>
     </article>
 
-    <article class="prod">
+    <article class="prod" id="mobil">
       <div class="shots">
         <img src="img/adimsayar-1.png" alt="Adım Sayar ana ekranı" loading="lazy">
         <img src="img/adimsayar-2.png" alt="Adım Sayar haftalık grafik ekranı" loading="lazy">
@@ -174,7 +202,7 @@ footer{text-align:center;color:var(--mut);font-size:.78rem;padding-bottom:30px}
     </article>
   </section>
 
-  <section>
+  <section id="web">
     <h2 class="sec">Web tasarım örnekleri</h2>
     <p class="sub">Küçük işletmeler için hazırladığım örnek tek sayfa siteler. Telefonunuzdan açıp bakın.</p>
     <div class="grid">

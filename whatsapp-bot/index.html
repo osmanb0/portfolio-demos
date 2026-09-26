@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Randevu Asistanı — WhatsApp Bot Demosu</title>
+<meta name="description" content="WhatsApp üzerinden randevu alan, hatırlatan ve işletme paneline yazan bot. Tarayıcıda deneyin.">
+<link rel="stylesheet" href="../fonts/bricolage-grotesque.css"><link rel="stylesheet" href="../fonts/instrument-sans.css">
+<style>
+:root{
+  --bg:#F3F1EC;--ink:#15201B;--mut:#5F6B65;--line:rgba(21,32,27,.1);
+  --wa:#1FA855;--wa-dk:#0B6B45;--wa-bg:#EFE7DC;--out:#D9FDD3;--in:#FFFFFF;
+  --card:#FFFFFF;--acc:#0B6B45;--warn:#C2410C;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+a{color:var(--acc)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--wa);outline-offset:2px}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.back{font-size:.85rem;font-weight:600;text-decoration:none;color:var(--mut)}
+.back:hover{color:var(--ink)}
+.pill{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:#fff;padding:6px 12px;border-radius:999px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding:34px 0 30px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;color:var(--wa-dk);margin-bottom:14px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 4px rgba(31,168,85,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(31,168,85,0)}}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-stretch:82%;font-size:clamp(2.3rem,6.4vw,4.6rem);line-height:.98;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--wa-dk)}
+.lead{color:var(--mut);max-width:52ch;margin-top:16px;font-size:1.02rem}
+.hero-stats{display:flex;gap:26px}
+.hero-stats b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:2rem;font-weight:800;line-height:1}
+.hero-stats span{font-size:.78rem;color:var(--mut)}
+
+/* stage */
+.stage{display:grid;grid-template-columns:390px 1fr;gap:28px;padding:34px 0 20px;align-items:start}
+.hint{grid-column:1/-1;display:flex;gap:10px;align-items:center;font-size:.88rem;color:var(--mut)}
+.hint b{color:var(--ink)}
+.hint .arrow{font-size:1.2rem}
+
+/* phone */
+.phone{background:#101614;border-radius:42px;padding:12px;box-shadow:0 30px 60px -20px rgba(11,40,30,.45),0 0 0 1px rgba(0,0,0,.2);position:sticky;top:16px}
+.screen{border-radius:32px;overflow:hidden;height:min(720px,calc(100vh - 60px));min-height:560px;display:flex;flex-direction:column;background:var(--wa-bg)}
+.wa-head{background:#075E54;color:#fff;display:flex;align-items:center;gap:10px;padding:34px 14px 10px}
+.wa-head .av{width:38px;height:38px;border-radius:50%;background:#fff;color:#075E54;display:grid;place-items:center;font-family:'Bricolage Grotesque';font-weight:800;font-size:1rem;flex:none}
+.wa-head b{display:block;font-size:.95rem;line-height:1.2}
+.wa-head small{font-size:.72rem;opacity:.85}
+.wa-head .ver{display:inline-grid;place-items:center;width:14px;height:14px;background:#25D366;border-radius:50%;font-size:.55rem;margin-left:4px;vertical-align:1px}
+.chat{flex:1;overflow-y:auto;padding:14px 10px 6px;display:flex;flex-direction:column;gap:4px;
+  background-color:var(--wa-bg);
+  background-image:radial-gradient(rgba(120,100,70,.08) 1px,transparent 1.4px);background-size:14px 14px}
+.day-chip{align-self:center;background:#fff;color:#54656F;font-size:.7rem;padding:4px 10px;border-radius:8px;margin:6px 0;box-shadow:0 1px .5px rgba(0,0,0,.1)}
+.sys{align-self:center;background:#FFF3C4;color:#54656F;font-size:.72rem;padding:6px 10px;border-radius:8px;text-align:center;max-width:88%;margin:4px 0}
+.msg::after{content:"";display:inline-block;width:40px;height:1px}
+.msg.out::after{width:56px}
+.msg{max-width:84%;padding:7px 10px 6px;border-radius:9px;font-size:.87rem;line-height:1.4;position:relative;white-space:pre-wrap;word-wrap:break-word;box-shadow:0 1px .5px rgba(0,0,0,.13);animation:pop .18s ease-out}
+@keyframes pop{from{transform:translateY(6px);opacity:0}}
+.msg.in{background:var(--in);align-self:flex-start;border-top-left-radius:2px}
+.msg.out{background:var(--out);align-self:flex-end;border-top-right-radius:2px}
+.msg.remind{border-left:3px solid #F59E0B}
+.msg time{position:absolute;right:8px;bottom:3px;font-size:.62rem;color:#667781}
+.msg.out time::after{content:" ✓✓";color:#53BDEB}
+.typing{align-self:flex-start;background:#fff;border-radius:9px;padding:10px 14px;display:flex;gap:4px;box-shadow:0 1px .5px rgba(0,0,0,.13)}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9AA5AC;animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{40%{transform:translateY(-4px);opacity:.5}}
+.quick{display:flex;gap:6px;overflow-x:auto;padding:8px 10px 2px;scrollbar-width:none}
+.quick::-webkit-scrollbar{display:none}
+.quick button{flex:none;background:#fff;border:1px solid rgba(7,94,84,.25);color:#075E54;border-radius:999px;padding:6px 12px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.quick button:hover{background:#E7F7EE}
+.compose{display:flex;gap:8px;padding:8px 10px 14px;align-items:center}
+.compose input{flex:1;border:0;border-radius:999px;padding:11px 16px;font:inherit;font-size:.9rem;background:#fff;min-width:0}
+.compose input:focus{outline:2px solid var(--wa)}
+.compose button{width:42px;height:42px;border-radius:50%;border:0;background:#00A884;color:#fff;display:grid;place-items:center;flex:none}
+
+/* panel */
+.panel{background:var(--card);border-radius:22px;border:1px solid var(--line);overflow:hidden}
+.p-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.p-head h2{font-family:'Bricolage Grotesque';font-size:1.25rem;font-weight:700}
+.p-head small{color:var(--mut);font-size:.8rem}
+.live{font-size:.72rem;font-weight:600;color:var(--wa-dk);background:#E4F6EA;padding:5px 10px;border-radius:999px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:16px 22px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat span{font-size:.72rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.stat b{display:block;font-family:'Bricolage Grotesque';font-size:1.7rem;font-weight:800;line-height:1.1;margin-top:4px;transition:color .3s}
+.stat b.bump{color:var(--wa)}
+.days{display:flex;gap:6px;padding:14px 22px 0;overflow-x:auto}
+.days button{flex:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 12px;text-align:left;min-width:78px}
+.days button small{display:block;font-size:.68rem;color:var(--mut)}
+.days button b{font-size:.95rem}
+.days button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.days button[aria-pressed=true] small{color:rgba(255,255,255,.7)}
+.days button .dot{display:inline-block;min-width:18px;height:18px;border-radius:9px;background:var(--wa);color:#fff;font-size:.65rem;text-align:center;line-height:18px;margin-left:6px;padding:0 4px;vertical-align:2px}
+.list{padding:10px 22px 22px}
+.row{display:grid;grid-template-columns:62px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.row .t{font-family:'Bricolage Grotesque';font-weight:700;font-size:1.05rem}
+.row .t small{display:block;font-family:'Instrument Sans';font-weight:400;font-size:.7rem;color:var(--mut)}
+.row .who b{font-size:.92rem}
+.row .who span{display:block;font-size:.78rem;color:var(--mut)}
+.src{font-size:.68rem;font-weight:600;padding:3px 8px;border-radius:6px;background:#F1F0EC;color:var(--mut);white-space:nowrap}
+.src.wa{background:#E4F6EA;color:var(--wa-dk)}
+.row.new{animation:flash 2.4s ease-out}
+.row.cancel .who,.row.cancel .t{opacity:.45;text-decoration:line-through}
+.row.cancel .src{background:#FDECE3;color:var(--warn);text-decoration:none}
+@keyframes flash{0%{background:#DDF7E6}100%{background:transparent}}
+.empty{color:var(--mut);font-size:.88rem;padding:24px 0;text-align:center}
+.p-foot{display:flex;gap:10px;flex-wrap:wrap;padding:16px 22px;background:#FAF9F6;border-top:1px solid var(--line);align-items:center}
+.p-foot p{font-size:.8rem;color:var(--mut);flex:1;min-width:200px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:11px 18px;font-weight:600;font-size:.85rem;text-decoration:none}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.green{background:var(--wa);color:#fff}
+.btn.line{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* features */
+section{padding:56px 0}
+h2.sec{font-family:'Bricolage Grotesque';font-weight:800;font-stretch:85%;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.05;margin-bottom:10px}
+.sub{color:var(--mut);max-width:60ch;margin-bottom:28px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.f{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.f .ic{font-size:1.4rem;margin-bottom:10px}
+.f h3{font-size:1rem;margin-bottom:6px}
+.f p{font-size:.88rem;color:var(--mut)}
+.fit{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.fit span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.84rem}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+.flow div{padding:22px;border-right:1px solid var(--line)}
+.flow div:last-child{border-right:0}
+.flow b{font-family:'Bricolage Grotesque';font-size:2rem;color:var(--wa);display:block;line-height:1}
+.flow h3{font-size:.98rem;margin:8px 0 4px}
+.flow p{font-size:.85rem;color:var(--mut)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.stack span{font-size:.75rem;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:3px 9px;background:#fff}
+.cta{background:#0E2A21;color:#fff;border-radius:24px;padding:44px 30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-bottom:40px}
+.cta h2{font-family:'Bricolage Grotesque';font-weight:800;font-stretch:85%;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.05}
+.cta p{color:rgba(255,255,255,.7);margin-top:8px;max-width:52ch}
+footer{text-align:center;color:var(--mut);font-size:.78rem;padding:0 0 30px}
+
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr}
+  .phone{position:relative;top:0;max-width:420px;margin:0 auto;width:100%}
+  .hero{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .cta{grid-template-columns:1fr}
+  .flow div{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media (max-width:480px){
+  .phone{padding:8px;border-radius:34px}
+  .screen{border-radius:26px;height:78vh}
+  .p-head,.list,.p-foot,.stat{padding-left:16px;padding-right:16px}
+  .days{padding-left:16px;padding-right:16px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../">← Portföye dön</a>
+    <span class="pill">Canlı demo</span>
+  </div>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow"><i></i>WhatsApp randevu botu · Kuaför, klinik, stüdyo, servis</div>
+      <h1>Telefonu açmadan<br><em>randevu defteri dolsun.</em></h1>
+      <p class="lead">Müşteriniz WhatsApp'tan yazar; bot boş saatleri gösterir, randevuyu kaydeder, bir gün önce hatırlatır. Siz sadece paneldeki listeye bakarsınız. Aşağıdaki telefondan kendiniz deneyin.</p>
+    </div>
+    <div class="hero-stats">
+      <div><b>7/24</b><span>randevu alır</span></div>
+      <div><b>2</b><span>otomatik hatırlatma</span></div>
+      <div><b>0</b><span>uygulama indirme</span></div>
+    </div>
+  </header>
+
+  <div class="stage">
+    <p class="hint"><span class="arrow">👇</span><span><b>Nasıl denenir?</b> Telefondaki sohbete adınızı yazın, sonra alttaki hazır cevaplara dokunun. Aldığınız randevu yandaki işletme panelinde anında görünür.</span></p>
+
+    <div class="phone" aria-label="WhatsApp sohbet simülasyonu">
+      <div class="screen">
+        <div class="wa-head">
+          <div class="av">L</div>
+          <div><b>Lina Güzellik Stüdyosu <span class="ver" aria-label="Onaylı işletme">✓</span></b><small id="status">çevrimiçi</small></div>
+        </div>
+        <div class="chat" id="chat" aria-live="polite"></div>
+        <div class="quick" id="quick"></div>
+        <form class="compose" id="form">
+          <label for="inp" class="sr" style="position:absolute;left:-9999px">Mesaj</label>
+          <input id="inp" autocomplete="off" placeholder="Mesaj yazın">
+          <button aria-label="Gönder"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+        </form>
+      </div>
+    </div>
+
+    <div class="panel" aria-label="İşletme paneli">
+      <div class="p-head">
+        <div><h2>İşletme paneli</h2><small>Lina Güzellik Stüdyosu · yönetici görünümü</small></div>
+        <span class="live">● Canlı · bot ile senkron</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><span id="sTodayL">Bugün</span><b id="sToday">0</b></div>
+        <div class="stat"><span>Bu hafta</span><b id="sWeek">0</b></div>
+        <div class="stat"><span>Beklenen ciro</span><b id="sRev">0 ₺</b></div>
+        <div class="stat"><span>WhatsApp'tan</span><b id="sWa">%0</b></div>
+      </div>
+      <div class="days" id="days" role="group" aria-label="Gün seç"></div>
+      <div class="list" id="list"></div>
+      <div class="p-foot">
+        <p id="footTxt">Randevu aldığınızda burada "Hatırlatmayı gönder" düğmesi açılır; bot randevudan bir gün önce müşteriye ne yazıyor, görebilirsiniz.</p>
+        <button class="btn green" id="remindBtn" disabled>🔔 Hatırlatmayı gönder</button>
+        <button class="btn line" id="resetBtn">Sıfırla</button>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="sec">Bot neler yapıyor?</h2>
+    <p class="sub">Menü tabanlı, anlaşılır Türkçe. Müşteri yazım hatası yapsa da, yarıda bıraksa da akış bozulmaz; "menü" yazan herkes başa döner.</p>
+    <div class="feat">
+      <div class="f"><div class="ic">📅</div><h3>Randevu alma</h3><p>Hizmet, gün, saat ve onay. Dolu saatler hiç gösterilmez, hizmet süresine göre boşluk hesaplanır.</p></div>
+      <div class="f"><div class="ic">🔔</div><h3>Otomatik hatırlatma</h3><p>Randevudan 24 saat ve 2 saat önce mesaj. Gelmeyen müşteri sayısı belirgin şekilde düşer.</p></div>
+      <div class="f"><div class="ic">🔄</div><h3>İptal ve erteleme</h3><p>Müşteri kendi randevusunu iptal eder ya da başka güne alır; boşalan saat anında tekrar satışa açılır.</p></div>
+      <div class="f"><div class="ic">👤</div><h3>Müşteri tanıma</h3><p>Yeni müşteriden adını bir kez alır, sonraki mesajlarda ismiyle hitap eder. Tüm mesaj geçmişi panelde.</p></div>
+      <div class="f"><div class="ic">📊</div><h3>Web paneli</h3><p>Günlük liste, haftalık ciro, iptal oranı; telefonla gelen randevuyu elle ekleme; hizmet, fiyat ve saat ayarları.</p></div>
+      <div class="f"><div class="ic">🛡️</div><h3>Çakışma koruması</h3><p>İki kişi aynı saate aynı anda yazsa bile ikincisine başka saat önerilir. Çift randevu olmaz.</p></div>
+    </div>
+    <div class="fit"><span>💇 Kuaför &amp; berber</span><span>💅 Güzellik salonu</span><span>🦷 Diş &amp; klinik</span><span>🥗 Diyetisyen</span><span>🧘 Pilates &amp; yoga</span><span>🚗 Oto servis</span><span>🐾 Veteriner</span></div>
+  </section>
+
+  <section style="padding-top:0">
+    <h2 class="sec">Kurulum nasıl ilerliyor?</h2>
+    <p class="sub">İşletmenizin kendi WhatsApp numarasıyla çalışır. Müşterinizin hiçbir şey indirmesi gerekmez.</p>
+    <div class="flow">
+      <div><b>1</b><h3>Hizmet ve saatler</h3><p>Hizmetlerinizi, sürelerini, fiyatları ve çalışma saatlerinizi alırım.</p></div>
+      <div><b>2</b><h3>Test numarası</h3><p>Aynı gün test numarası üzerinden botu kendi telefonunuzda denersiniz.</p></div>
+      <div><b>3</b><h3>Resmî numara</h3><p>WhatsApp Business API onayı (genelde 1-3 iş günü) ile işletme numaranıza taşınır.</p></div>
+      <div><b>4</b><h3>Panel teslimi</h3><p>Yönetim paneli şifreniz, kısa kullanım notu ve teslim sonrası destek.</p></div>
+    </div>
+    <div class="stack"><span>Node.js</span><span>TypeScript</span><span>Express</span><span>SQLite</span><span>WhatsApp Business API (Twilio)</span><span>29 uçtan uca test</span></div>
+  </section>
+
+  <div class="cta">
+    <div>
+      <h2>İşletmeniz için kuralım.</h2>
+      <p>Randevu, sipariş, bilgi verme ya da müşteri takibi. Ne yapmasını istediğinizi yazın, botun akışını ve net fiyatını birlikte çıkaralım.</p>
+    </div>
+    <a class="btn green" href="https://bionluk.com/osmanby0" rel="noopener">Bionluk'tan yazın →</a>
+  </div>
+  <footer>Demo işletme hayalidir. Bot motoru gerçek üründeki akışla birebir aynıdır; bu sayfada veriler yalnızca tarayıcınızda tutulur.</footer>
+</div>
+
+<script>
+(() => {
+  const BIZ = 'Lina Güzellik Stüdyosu';
+  const SERVICES = [
+    {id:1,name:'Saç kesimi',dur:45,price:600},
+    {id:2,name:'Fön',dur:30,price:350},
+    {id:3,name:'Saç boyama',dur:120,price:1800},
+    {id:4,name:'Manikür',dur:45,price:450},
+    {id:5,name:'Cilt bakımı',dur:60,price:900},
+  ];
+  const OPEN = 10*60, CLOSE = 19*60, STEP = 30;
+  const DAYN = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+  const DAYS = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
+  const MON = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  const NAMES = ['Ayşe K.','Elif D.','Zeynep A.','Merve T.','Selin Y.','Derya Ö.','Burcu S.','Gizem E.','Nazlı B.','Ece Ç.','Pınar G.','Esra M.'];
+  const $ = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2,'0');
+  const hm = m => pad(Math.floor(m/60))+':'+pad(m%60);
+  const dayKey = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  const nowMin = () => { const n = new Date(); return n.getHours()*60+n.getMinutes(); };
+
+  // Next 6 open days (Sunday closed)
+  function openDays(){
+    const out=[]; const d=new Date(); d.setHours(0,0,0,0);
+    for(let i=0;out.length<6&&i<14;i++){
+      const x=new Date(d); x.setDate(d.getDate()+i);
+      if(x.getDay()===0) continue;
+      if(i===0 && nowMin() > CLOSE-60) continue;
+      out.push(x);
+    }
+    return out;
+  }
+  const label = (d,i) => {
+    const today=new Date(); today.setHours(0,0,0,0);
+    const diff=Math.round((d-today)/864e5);
+    const pre = diff===0?'Bugün, ':diff===1?'Yarın, ':'';
+    return pre + d.getDate()+' '+MON[d.getMonth()]+' '+DAYN[d.getDay()];
+  };
+  const human = a => { const d=new Date(a.day+'T00:00'); return d.getDate()+' '+MON[d.getMonth()]+' '+DAYN[d.getDay()]+', '+hm(a.start); };
+
+  // ---- state ----
+  let appts=[], customer=null, session=null, lastBooked=null, selDay=null, seq=1;
+  function seed(){
+    appts=[]; let r=7;
+    const rnd=()=>{r=(r*9301+49297)%233280;return r/233280};
+    openDays().forEach((d,di)=>{
+      const n = 3+Math.floor(rnd()*3) - (di>3?1:0);
+      for(let k=0;k<n;k++){
+        const s=SERVICES[Math.floor(rnd()*SERVICES.length)];
+        const start=OPEN+Math.floor(rnd()*((CLOSE-OPEN-s.dur)/STEP))*STEP;
+        const a={id:seq++,day:dayKey(d),start,svc:s.id,who:NAMES[Math.floor(rnd()*NAMES.length)],src:rnd()<.6?'wa':'tel',status:'ok'};
+        if(isFree(a.day,start,s.dur)) appts.push(a);
+      }
+    });
+  }
+  function isFree(day,start,dur,ignoreId){
+    return !appts.some(a=>a.status==='ok'&&a.day===day&&a.id!==ignoreId&&start<a.start+svc(a.svc).dur&&a.start<start+dur);
+  }
+  const svc = id => SERVICES.find(s=>s.id===id);
+  function slots(day,dur,ignoreId){
+    const out=[]; const isToday = day===dayKey(new Date());
+    for(let m=OPEN;m+dur<=CLOSE;m+=STEP){
+      if(isToday && m<nowMin()+60) continue;
+      if(isFree(day,m,dur,ignoreId)) out.push(m);
+    }
+    return out;
+  }
+  const mine = () => appts.filter(a=>a.mine&&a.status==='ok').sort((a,b)=>(a.day+hm(a.start)).localeCompare(b.day+hm(b.start)));
+
+  // ---- bot (port of src/bot.ts) ----
+  const menu = name => `${name?`Merhaba ${name}! 👋`:'Merhaba! 👋'} *${BIZ}* randevu asistanına hoş geldiniz.\n\nNe yapmak istersiniz?\n*1* - 📅 Randevu al\n*2* - 📋 Randevularımı görüntüle\n*3* - ❌ Randevu iptal et\n*4* - 🔄 Randevu ertele\n\n_Dilediğiniz zaman *menü* yazarak başa dönebilirsiniz._`;
+  const svcList = () => `Hangi hizmet için randevu almak istersiniz?\n\n${SERVICES.map((s,i)=>`*${i+1}* - ${s.name} (${s.dur} dk) — ${s.price} TL`).join('\n')}\n\n_Numarasını yazmanız yeterli._`;
+  const dayList = days => `Hangi gün uygunsunuz?\n\n${days.map((d,i)=>`*${i+1}* - ${d.label}`).join('\n')}`;
+  const slotList = sl => `Uygun saatler:\n\n${sl.map((m,i)=>`*${i+1}* - ${hm(m)}`).join('\n')}\n\n_Numarasını yazmanız yeterli._`;
+  const apptList = (list,h) => `${h}\n\n${list.map((a,i)=>`*${i+1}* - ${human(a)} — ${svc(a.svc).name}`).join('\n')}`;
+  const choice = (t,max) => { const m=t.trim().match(/^(\d{1,2})\.?$/); if(!m) return null; const n=+m[1]; return n>=1&&n<=max?n:null; };
+  const RESET=['menü','menu','iptal','başa dön','basa don','0'];
+  const bookDays = () => openDays().map(d=>({key:dayKey(d),label:label(d)}));
+
+  function bot(raw){
+    const text=raw.trim(), lower=text.toLocaleLowerCase('tr');
+    if(RESET.includes(lower) && customer){ session=null; return [menu(customer),menuQ()]; }
+    if(!customer){
+      if(!session){ session={step:'ask_name'}; return [`Merhaba! 👋 *${BIZ}* randevu asistanına hoş geldiniz.\n\nSize hitap edebilmemiz için adınızı ve soyadınızı yazar mısınız?`,[]]; }
+      if(text.length<2||/^\d+$/.test(text)) return ['Adınızı anlayamadım, lütfen ad ve soyadınızı yazın. 🙏',[]];
+      customer=text.replace(/\s+/g,' ').split(' ').map(w=>w.charAt(0).toLocaleUpperCase('tr')+w.slice(1)).join(' ');
+      session=null; return [menu(customer),menuQ()];
+    }
+    if(!session){
+      const c=choice(text,4);
+      if(c===null) return [menu(customer),menuQ()];
+      return menuChoice(c);
+    }
+    const again = n => [`Lütfen listeden bir numara seçin (1-${n}) ya da *menü* yazın.`,null];
+    switch(session.step){
+      case 'pick_service':{
+        const c=choice(text,SERVICES.length); if(c===null) return again(SERVICES.length);
+        const s=SERVICES[c-1], days=bookDays();
+        session={...session,step:'pick_day',svc:s.id,days};
+        return [`*${s.name}* seçtiniz. ✅\n\n${dayList(days)}`,numQ(days.length,days.map(d=>d.label.replace(/^(Bugün|Yarın), /,'$1 · ').split(' ').slice(0,3).join(' ')))];
+      }
+      case 'pick_day':{
+        const days=session.days, c=choice(text,days.length); if(c===null) return again(days.length);
+        const d=days[c-1], sl=slots(d.key,svc(session.svc).dur,session.resched).slice(0,8);
+        if(!sl.length) return [`${d.label} için uygun saat kalmamış. 😔 Lütfen başka bir gün seçin:\n\n${dayList(days)}`,null];
+        session={...session,step:'pick_time',day:d.key,slots:sl};
+        return [`📅 ${d.label}\n\n${slotList(sl)}`,numQ(sl.length,sl.map(hm))];
+      }
+      case 'pick_time':{
+        const sl=session.slots, c=choice(text,sl.length); if(c===null) return again(sl.length);
+        const s=svc(session.svc); session={...session,step:'confirm',start:sl[c-1]};
+        return [`Onaylıyor musunuz?\n\n🗓 *${human({day:session.day,start:session.start})}*\n💇 Hizmet: ${s.name} (${s.dur} dk)\n💰 Ücret: ${s.price} TL\n\nRandevu ${session.resched?'ertelensin':'oluşturulsun'} mu? (*evet* / *hayır*)`,[['Evet','evet'],['Hayır','hayır']]];
+      }
+      case 'confirm':{
+        if(['evet','e','onay','onayla','tamam'].includes(lower)){
+          const s=svc(session.svc);
+          if(!isFree(session.day,session.start,s.dur,session.resched)){
+            const sl=slots(session.day,s.dur,session.resched).slice(0,8);
+            session={...session,step:'pick_time',slots:sl};
+            return [`Üzgünüz, siz onaylarken bu saat doldu. 😔 Lütfen başka bir saat seçin:\n\n${slotList(sl)}`,numQ(sl.length,sl.map(hm))];
+          }
+          let a;
+          if(session.resched){ a=appts.find(x=>x.id===session.resched); a.day=session.day; a.start=session.start; a.moved=true; }
+          else { a={id:seq++,day:session.day,start:session.start,svc:s.id,who:customer,src:'wa',status:'ok',mine:true}; appts.push(a); }
+          const verb=session.resched?'ertelendi':'oluşturuldu';
+          session=null; lastBooked=a; selDay=a.day; render(a.id);
+          return [`✅ Randevunuz ${verb}!\n\n🗓 *${human(a)}*\n💇 ${s.name}\n📍 ${BIZ}\n\nRandevunuzdan önce size hatırlatma mesajı göndereceğiz. Görüşmek üzere! 😊`,menuQ()];
+        }
+        if(['hayır','hayir','h','yok','vazgeç','vazgec'].includes(lower)){ session=null; return [`İşlem iptal edildi. ${menu(customer)}`,menuQ()]; }
+        return ['Lütfen *evet* ya da *hayır* yazın.',null];
+      }
+      case 'cancel_pick':{
+        const ids=session.ids, c=choice(text,ids.length); if(c===null) return again(ids.length);
+        const a=appts.find(x=>x.id===ids[c-1]); a.status='cancel'; session=null; selDay=a.day;
+        if(lastBooked&&lastBooked.id===a.id) lastBooked=mine()[0]||null;
+        render(a.id);
+        return ['❌ Randevunuz iptal edildi. Tekrar randevu almak isterseniz *1* yazmanız yeterli. 😊',menuQ()];
+      }
+      case 'resched_pick':{
+        const ids=session.ids, c=choice(text,ids.length); if(c===null) return again(ids.length);
+        const a=appts.find(x=>x.id===ids[c-1]), days=bookDays();
+        session={step:'pick_day',svc:a.svc,resched:a.id,days};
+        return [`*${svc(a.svc).name}* randevunuzu erteliyorsunuz.\n\n${dayList(days)}`,numQ(days.length,days.map(d=>d.label.split(' ').slice(0,3).join(' ')))];
+      }
+    }
+    session=null; return [menu(customer),menuQ()];
+  }
+  function menuChoice(c){
+    const list=mine();
+    if(c===1){ session={step:'pick_service'}; return [svcList(),numQ(SERVICES.length,SERVICES.map(s=>s.name))]; }
+    if(c===2) return list.length?[apptList(list,'📋 Yaklaşan randevularınız:')+'\n\n_Ana menü için *menü* yazın._',menuQ()]:['Yaklaşan randevunuz bulunmuyor. Randevu almak için *1* yazabilirsiniz. 😊',menuQ()];
+    if(!list.length) return [c===3?'İptal edilecek randevunuz bulunmuyor. Randevu almak için *1* yazabilirsiniz.':'Ertelenecek randevunuz bulunmuyor. Randevu almak için *1* yazabilirsiniz.',menuQ()];
+    session={step:c===3?'cancel_pick':'resched_pick',ids:list.map(a=>a.id)};
+    return [apptList(list,c===3?'Hangi randevuyu iptal etmek istersiniz?':'Hangi randevuyu ertelemek istersiniz?'),numQ(list.length,list.map(a=>human(a).split(', ')[0].split(' ').slice(0,2).join(' ')+' '+hm(a.start)))];
+  }
+  const menuQ = () => [['1 · Randevu al','1'],['2 · Randevularım','2'],['3 · İptal','3'],['4 · Ertele','4']];
+  const numQ = (n,labels) => Array.from({length:n},(_,i)=>[`${i+1} · ${labels[i]}`,String(i+1)]).concat([['Menü','menü']]);
+
+  // ---- chat UI ----
+  const chat=$('chat'), quick=$('quick');
+  const esc = s => s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const fmt = s => esc(s).replace(/\*([^*\n]+)\*/g,'<b>$1</b>').replace(/_([^_\n]+)_/g,'<i>$1</i>');
+  const clock = () => { const n=new Date(); return pad(n.getHours())+':'+pad(n.getMinutes()); };
+  function add(cls,text){
+    const el=document.createElement('div'); el.className='msg '+cls; el.innerHTML=fmt(text)+`<time>${clock()}</time>`;
+    chat.appendChild(el); chat.scrollTop=chat.scrollHeight;
+  }
+  function note(text,cls='sys'){ const el=document.createElement('div'); el.className=cls; el.textContent=text; chat.appendChild(el); chat.scrollTop=chat.scrollHeight; }
+  function setQuick(q){
+    quick.innerHTML='';
+    (q||[]).forEach(([l,v])=>{ const b=document.createElement('button'); b.type='button'; b.textContent=l; b.onclick=()=>send(v); quick.appendChild(b); });
+  }
+  let busy=false, lastQ=[];
+  function reply(res,delay=650){
+    busy=true; $('status').textContent='yazıyor…';
+    const t=document.createElement('div'); t.className='typing'; t.innerHTML='<i></i><i></i><i></i>'; chat.appendChild(t); chat.scrollTop=chat.scrollHeight;
+    setTimeout(()=>{ t.remove(); add('in',res[0]); if(res[1]!==null) lastQ=res[1]; setQuick(lastQ); $('status').textContent='çevrimiçi'; busy=false; },delay);
+  }
+  function send(v){
+    if(busy||!v.trim()) return;
+    add('out',v.trim()); setQuick([]);
+    reply(bot(v));
+  }
+  $('form').addEventListener('submit',e=>{ e.preventDefault(); const i=$('inp'); send(i.value); i.value=''; });
+
+  function start(){
+    chat.innerHTML=''; customer=null; session=null; lastBooked=null; lastQ=[];
+    note('Bugün','day-chip');
+    note('🔒 Bu bir demodur. Yazdıklarınız hiçbir yere gönderilmez.');
+    add('out','Merhaba, randevu almak istiyorum');
+    reply(bot('Merhaba'),900);
+  }
+
+  // ---- panel ----
+  function render(flashId){
+    const days=openDays(); const today=dayKey(new Date());
+    if(!selDay||!days.some(d=>dayKey(d)===selDay)) selDay=dayKey(days[0]);
+    const ok=appts.filter(a=>a.status==='ok');
+    const bump=(id,v)=>{ const el=$(id); if(el.textContent!==String(v)){ el.textContent=v; if(flashId){ el.classList.add('bump'); setTimeout(()=>el.classList.remove('bump'),1200);} } };
+    const first=dayKey(days[0]);
+    $('sTodayL').textContent = first===today ? 'Bugün' : DAYS[days[0].getDay()]+' '+days[0].getDate()+' '+MON[days[0].getMonth()].slice(0,3);
+    bump('sToday',ok.filter(a=>a.day===first).length);
+    bump('sWeek',ok.length);
+    bump('sRev',ok.reduce((t,a)=>t+svc(a.svc).price,0).toLocaleString('tr-TR')+' ₺');
+    bump('sWa','%'+Math.round(100*ok.filter(a=>a.src==='wa').length/Math.max(1,ok.length)));
+    $('days').innerHTML='';
+    days.forEach(d=>{
+      const k=dayKey(d), n=ok.filter(a=>a.day===k).length;
+      const b=document.createElement('button'); b.type='button'; b.setAttribute('aria-pressed',k===selDay);
+      b.innerHTML=`<small>${k===today?'Bugün':DAYS[d.getDay()]}</small><b>${d.getDate()} ${MON[d.getMonth()].slice(0,3)}</b>${ok.some(a=>a.day===k&&a.mine)?'<span class="dot">SİZ</span>':''}`;
+      b.title=n+' randevu';
+      b.onclick=()=>{ selDay=k; render(); };
+      $('days').appendChild(b);
+    });
+    const list=appts.filter(a=>a.day===selDay).sort((a,b)=>a.start-b.start);
+    $('list').innerHTML = list.length ? list.map(a=>{
+      const s=svc(a.svc);
+      const tag = a.status==='cancel' ? '<span class="src">İptal · WhatsApp</span>' : a.mine ? `<span class="src wa">${a.moved?'Ertelendi':'Yeni'} · WhatsApp</span>` : `<span class="src ${a.src==='wa'?'wa':''}">${a.src==='wa'?'WhatsApp':'Telefon'}</span>`;
+      return `<div class="row ${a.status==='cancel'?'cancel':''} ${a.id===flashId?'new':''}"><div class="t">${hm(a.start)}<small>${s.dur} dk</small></div><div class="who"><b>${esc(a.who)}</b><span>${s.name} · ${s.price} ₺</span></div>${tag}</div>`;
+    }).join('') : '<div class="empty">Bu gün için randevu yok.</div>';
+    $('remindBtn').disabled = !mine().length;
+    if(mine().length) $('footTxt').textContent='Randevunuz kayıtlı. Bot, randevudan 24 saat önce müşteriye otomatik hatırlatma gönderir. Nasıl göründüğünü görmek için düğmeye basın.';
+  }
+  $('remindBtn').onclick=()=>{
+    const a=mine()[0]; if(!a||busy) return;
+    note('⏩ Zaman ileri sarıldı: randevudan 24 saat öncesi');
+    busy=true; setTimeout(()=>{ busy=false;
+      add('in remind',`🔔 *Randevu hatırlatması*\n\nMerhaba ${customer}, yarın *${hm(a.start)}*'de ${svc(a.svc).name} randevunuz var.\n📍 ${BIZ}\n\nGelemeyecekseniz *3* yazarak iptal edebilir, *4* yazarak erteleyebilirsiniz. Görüşmek üzere! 😊`);
+      lastQ=menuQ(); setQuick(lastQ);
+    },500);
+    if(window.innerWidth<900) document.querySelector('.phone').scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  $('resetBtn').onclick=()=>{ seq=1; seed(); selDay=null; render(); start(); };
+
+  seed(); render(); start();
+})();
+</script>
+</body>
+</html>

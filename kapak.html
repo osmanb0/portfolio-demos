@@ -2,36 +2,87 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Gig Kapak — 1280x769 ekran görüntüsü al</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&family=Manrope:wght@600;800&display=swap" rel="stylesheet">
+<title>Gig Kapakları — 1280x769</title>
+<!-- Kullanım: kapak.html?k=web | wa | chrome | mobil  → 1280x769 ekran görüntüsü al -->
+<link rel="stylesheet" href="fonts/fraunces.css"><link rel="stylesheet" href="fonts/manrope.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{width:1280px;height:769px;overflow:hidden;background:#0F1115;color:#EDEAE4;font-family:'Manrope',sans-serif;display:flex;align-items:center;justify-content:center}
-.stage{width:1280px;height:769px;padding:70px 80px;position:relative;background:radial-gradient(900px 500px at 85% 15%,rgba(91,192,190,.14),transparent 60%),#0F1115}
-.eyebrow{color:#5BC0BE;font-weight:800;letter-spacing:.3em;text-transform:uppercase;font-size:18px}
-h1{font-family:'Fraunces',serif;font-weight:900;font-size:84px;line-height:1.04;margin-top:22px}
-h1 em{font-style:italic;color:#5BC0BE}
-.feat{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:40px}
-.feat span{border:1.5px solid rgba(237,234,228,.25);border-radius:999px;padding:12px 26px;font-size:20px;font-weight:600}
-.phones{position:absolute;right:80px;bottom:-60px;display:flex;gap:24px}
-.ph{width:190px;height:390px;border-radius:28px;border:5px solid #2A2E38;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5)}
-.ph.a{background:linear-gradient(180deg,#1E3B2F 45%,#FBF7EF 45%)}
-.ph.b{background:linear-gradient(180deg,#14151A 55%,#B33A3A 55%);transform:translateY(-36px)}
-.ph.c{background:linear-gradient(180deg,#26201B 30%,#FCF8F2 30%)}
-.ph .bar{height:10px;width:60%;margin:24px auto 0;border-radius:6px;background:rgba(255,255,255,.35)}
-.ph .bar.s{width:40%;margin-top:10px;background:rgba(255,255,255,.2)}
+body{background:#000;font-family:'Manrope',sans-serif;color:#EDEAE4}
+.stage{width:1280px;height:769px;overflow:hidden;position:relative;padding:72px 0 0 80px;
+  background:radial-gradient(900px 560px at 88% 20%,var(--glow),transparent 62%),#0F1115;--acc:#5BC0BE;--glow:rgba(91,192,190,.16)}
+.stage.wa{--acc:#3DDC84;--glow:rgba(37,211,102,.16)}
+.stage.chrome{--acc:#8AB4F8;--glow:rgba(138,180,248,.16)}
+.stage.mobil{--acc:#F6B35B;--glow:rgba(246,179,91,.15)}
+.eyebrow{color:var(--acc);font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:18px}
+h1{font-family:'Fraunces',serif;font-weight:900;font-size:76px;line-height:1.03;margin-top:22px;width:600px;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--acc)}
+.feat{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:36px}
+.feat span{border:1.5px solid rgba(237,234,228,.22);border-radius:999px;padding:11px 24px;font-size:20px;font-weight:600;background:rgba(255,255,255,.03)}
+.sign{position:absolute;left:80px;bottom:44px;font-size:17px;color:#8B8F99;font-weight:600}
+.sign b{color:#EDEAE4}
+.art{position:absolute;right:0;top:0;bottom:0;width:600px}
+.shot{position:absolute;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.1);background:#fff}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.phone{position:absolute;border-radius:36px;padding:9px;background:#1A1D24;box-shadow:0 30px 70px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08)}
+.phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:28px}
+.badge{position:absolute;background:var(--acc);color:#0F1115;font-weight:800;font-size:18px;padding:10px 20px;border-radius:999px;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.win{position:absolute;border-radius:12px;overflow:hidden;background:#1F232B;box-shadow:0 30px 70px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1)}
+.win i{display:block;height:26px;background:#1F232B;position:relative}
+.win i::before{content:"";position:absolute;left:14px;top:9px;width:9px;height:9px;border-radius:50%;background:#FF5F57;box-shadow:15px 0 #FEBC2E,30px 0 #28C840}
+.win img{display:block;width:100%;aspect-ratio:16/9.5;object-fit:cover;object-position:top}
+.k{display:none}
 </style>
 </head>
 <body>
-<div class="stage">
-  <div class="eyebrow">Web Tasarım · Mobil Uyumlu</div>
-  <h1>İşletmenize özel<br>tek sayfa site,<br><em>24 saatte.</em></h1>
-  <div class="feat"><span>📱 Mobil öncelikli</span><span>💬 WhatsApp butonu</span><span>⚡ Hızlı teslim</span></div>
-  <div class="phones">
-    <div class="ph a"><div class="bar"></div><div class="bar s"></div></div>
-    <div class="ph b"><div class="bar"></div><div class="bar s"></div></div>
-    <div class="ph c"><div class="bar"></div><div class="bar s"></div></div>
+
+<div class="stage k" id="web">
+  <div class="eyebrow">Web Sitesi · Mobil Uyumlu</div>
+  <h1>İşletmenize özel<br>web sitesi,<br><em>hızlı teslim.</em></h1>
+  <div class="feat"><span>📱 Telefonda kusursuz</span><span>💬 WhatsApp randevu / sipariş</span><span>🎨 Hazır tema değil, size özel</span></div>
+  <div class="sign">Canlı örnekler: <b>osmanb0.github.io/portfolio-demos</b></div>
+  <div class="art">
+    <div class="win" style="width:520px;left:70px;top:70px;transform:rotate(2deg)"><i></i><img src="img/demo-otel.jpg" alt=""></div>
+    <div class="win" style="width:520px;left:10px;top:250px;z-index:2;transform:rotate(-2deg)"><i></i><img src="img/demo-berber.jpg" alt=""></div>
+    <div class="win" style="width:440px;left:150px;top:470px;z-index:3"><i></i><img src="img/demo-kafe.jpg" alt=""></div>
   </div>
 </div>
+
+<div class="stage wa k" id="wa">
+  <div class="eyebrow">WhatsApp Botu · Randevu &amp; Sipariş</div>
+  <h1>Müşteriniz yazsın,<br><em>bot randevuyu<br>kaydetsin.</em></h1>
+  <div class="feat"><span>📅 7/24 randevu alma</span><span>🔔 Otomatik hatırlatma</span><span>📊 İşletme paneli</span></div>
+  <div class="sign">Canlı demo: <b>osmanb0.github.io/portfolio-demos/whatsapp-bot</b></div>
+  <div class="art">
+    <div class="shot" style="width:570px;height:356px;left:0;top:200px"><img src="img/demo-whatsapp.jpg" alt="" style="object-position:left top"></div>
+    <div class="badge" style="left:20px;top:140px">✅ Randevunuz oluşturuldu!</div>
+  </div>
+</div>
+
+<div class="stage chrome k" id="chrome">
+  <div class="eyebrow">Chrome Eklentisi · Otomasyon</div>
+  <h1>Her gün yaptığınız işi<br><em>tek tıka</em><br>indirelim.</h1>
+  <div class="feat"><span>🧩 Size özel Chrome eklentisi</span><span>🤖 Yapay zekâ entegrasyonu</span><span>⚙️ Veri toplama &amp; otomasyon</span></div>
+  <div class="sign">Canlı ürünler: <b>İş Başvuru Asistanı · Paperwise</b></div>
+  <div class="art">
+    <div class="shot" style="width:540px;height:320px;left:30px;top:90px"><img src="img/is-basvuru.png" alt=""></div>
+    <div class="shot" style="width:520px;height:300px;left:10px;top:400px"><img src="img/paperwise.png" alt=""></div>
+  </div>
+</div>
+
+<div class="stage mobil k" id="mobil">
+  <div class="eyebrow">Mobil Uygulama · Android &amp; iOS</div>
+  <h1>Fikrinizi<br><em>telefona</em><br>taşıyalım.</h1>
+  <div class="feat"><span>📱 Flutter ile tek kod, iki platform</span><span>🎨 Arayüz tasarımı dahil</span><span>🚀 Mağazaya yükleme desteği</span></div>
+  <div class="sign">Örnek: <b>Adım Sayar</b> · Flutter</div>
+  <div class="art">
+    <div class="phone" style="width:260px;height:540px;left:60px;top:130px;transform:rotate(-3deg)"><img src="img/adimsayar-1.png" alt=""></div>
+    <div class="phone" style="width:260px;height:540px;left:300px;top:80px;transform:rotate(3deg)"><img src="img/adimsayar-2.png" alt=""></div>
+  </div>
+</div>
+
+<script>
+const k=new URLSearchParams(location.search).get('k')||'web';
+(document.getElementById(k)||document.getElementById('web')).classList.remove('k');
+</script>
 </body>
 </html>
