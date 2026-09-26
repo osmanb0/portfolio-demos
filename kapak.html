@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Gig Kapakları — 1280x769</title>
-<!-- Kullanım: kapak.html?k=web | wa | chrome | mobil  → 1280x769 ekran görüntüsü al -->
+<!-- Kullanım: kapak.html?k=web | wa | chrome | mobil | fix | veri | eticaret  → 1280x769 ekran görüntüsü al -->
 <link rel="stylesheet" href="fonts/fraunces.css"><link rel="stylesheet" href="fonts/manrope.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -13,6 +13,21 @@ body{background:#000;font-family:'Manrope',sans-serif;color:#EDEAE4}
 .stage.wa{--acc:#3DDC84;--glow:rgba(37,211,102,.16)}
 .stage.chrome{--acc:#8AB4F8;--glow:rgba(138,180,248,.16)}
 .stage.mobil{--acc:#F6B35B;--glow:rgba(246,179,91,.15)}
+.stage.fix{--acc:#F28B82;--glow:rgba(242,139,130,.15)}
+.stage.veri{--acc:#81C995;--glow:rgba(129,201,149,.15)}
+.stage.eticaret{--acc:#FF9A4D;--glow:rgba(255,154,77,.16)}
+.sheet{position:absolute;border-radius:12px;overflow:hidden;background:#fff;color:#1F2328;box-shadow:0 30px 70px rgba(0,0,0,.55);font-size:17px}
+.sheet table{border-collapse:collapse;width:100%}
+.sheet th{background:#1E7E45;color:#fff;font-weight:700;text-align:left;padding:10px 14px}
+.sheet td{padding:9px 14px;border-bottom:1px solid #E3E6EA}
+.sheet tr:nth-child(even) td{background:#F4F7F5}
+.sheet td.n{text-align:right;font-variant-numeric:tabular-nums}
+.note{position:absolute;width:430px;background:#1F232B;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px 20px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.note b{display:block;font-size:19px;margin-bottom:4px}
+.note small{font-size:16px;color:#A9ADB6}
+.note em{float:right;font-style:normal;font-size:14px;color:#8B8F99}
+.code{position:absolute;border-radius:12px;background:#1F232B;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 70px rgba(0,0,0,.6);padding:18px 22px;font:500 17px/1.7 Consolas,monospace;color:#C9CDD4}
+.code .del{color:#F28B82}.code .add{color:#81C995}.code .c{color:#6B7280}
 .eyebrow{color:var(--acc);font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:18px}
 h1{font-family:'Fraunces',serif;font-weight:900;font-size:76px;line-height:1.03;margin-top:22px;width:600px;letter-spacing:-.01em}
 h1 em{font-style:italic;color:var(--acc)}
@@ -77,6 +92,57 @@ h1 em{font-style:italic;color:var(--acc)}
   <div class="art">
     <div class="phone" style="width:260px;height:540px;left:60px;top:130px;transform:rotate(-3deg)"><img src="img/adimsayar-1.png" alt=""></div>
     <div class="phone" style="width:260px;height:540px;left:300px;top:80px;transform:rotate(3deg)"><img src="img/adimsayar-2.png" alt=""></div>
+  </div>
+</div>
+
+<div class="stage fix k" id="fix">
+  <div class="eyebrow">Hızlı Düzeltme · Aynı Gün</div>
+  <h1>Sitenizdeki<br>o küçük sorunu<br><em>bugün çözelim.</em></h1>
+  <div class="feat"><span>🐞 Hata, bozuk görünüm, çalışmayan form</span><span>✏️ Metin, fiyat, görsel güncelleme</span><span>💬 WhatsApp butonu, harita ekleme</span></div>
+  <div class="sign">HTML · CSS · JavaScript · <b>WordPress</b></div>
+  <div class="art">
+    <div class="win" style="width:520px;left:60px;top:90px;transform:rotate(2deg)"><i></i><img src="img/demo-dis.jpg" alt=""></div>
+    <div class="code" style="width:500px;left:30px;top:410px;z-index:2">
+      <div class="c">/* mobilde taşan menü */</div>
+      <div class="del">- .menu { width: 1200px; }</div>
+      <div class="add">+ .menu { max-width: 100%; }</div>
+      <div class="add">+ @media (max-width: 600px) { … }</div>
+    </div>
+    <div class="badge" style="left:360px;top:360px;z-index:3">✅ Düzeltildi</div>
+  </div>
+</div>
+
+<div class="stage veri k" id="veri">
+  <div class="eyebrow">Veri Toplama · Excel Otomasyonu</div>
+  <h1>Elle kopyalamayı<br>bırakın,<br><em>tablo hazır gelsin.</em></h1>
+  <div class="feat"><span>🧾 Sitelerden ürün / fiyat / ilan toplama</span><span>📊 Excel &amp; Google Sheets otomasyonu</span><span>⏰ Her gün kendiliğinden çalışan raporlar</span></div>
+  <div class="sign">Python ile · <b>temiz, düzenli, tekrar çalıştırılabilir</b></div>
+  <div class="art">
+    <div class="sheet" style="width:540px;left:20px;top:150px;transform:rotate(-1.5deg)">
+      <table>
+        <tr><th>Ürün</th><th>Satıcı</th><th class="n">Fiyat</th><th class="n">Stok</th></tr>
+        <tr><td>Kablosuz Kulaklık</td><td>Mağaza A</td><td class="n">849 ₺</td><td class="n">32</td></tr>
+        <tr><td>Kablosuz Kulaklık</td><td>Mağaza B</td><td class="n">799 ₺</td><td class="n">8</td></tr>
+        <tr><td>Akıllı Saat</td><td>Mağaza A</td><td class="n">1.299 ₺</td><td class="n">15</td></tr>
+        <tr><td>Akıllı Saat</td><td>Mağaza C</td><td class="n">1.249 ₺</td><td class="n">4</td></tr>
+        <tr><td>Powerbank 20000</td><td>Mağaza B</td><td class="n">549 ₺</td><td class="n">61</td></tr>
+        <tr><td>Powerbank 20000</td><td>Mağaza C</td><td class="n">579 ₺</td><td class="n">23</td></tr>
+      </table>
+    </div>
+    <div class="badge" style="left:300px;top:520px">📥 rapor.xlsx hazır</div>
+  </div>
+</div>
+
+<div class="stage eticaret k" id="eticaret">
+  <div class="eyebrow">E-Ticaret Otomasyonu · Satıcılar İçin</div>
+  <h1>Mağazanızı<br><em>sizin yerinize</em><br>takip edelim.</h1>
+  <div class="feat"><span>📦 Yeni sipariş &amp; stok uyarısı telefonunuza</span><span>🏷️ Toplu fiyat / stok güncelleme</span><span>📊 Günlük satış raporu</span></div>
+  <div class="sign">Trendyol · Hepsiburada · <b>resmi satıcı API'leri</b></div>
+  <div class="art">
+    <div class="note" style="left:90px;top:120px"><em>09:12</em><b>🛒 Yeni sipariş · 3 ürün</b><small>Toplam 1.847 ₺ · kargoya son gün yarın</small></div>
+    <div class="note" style="left:40px;top:250px;z-index:2"><em>11:40</em><b>⚠️ Stok azaldı</b><small>Akıllı Saat Siyah · kalan 3 adet</small></div>
+    <div class="note" style="left:110px;top:380px;z-index:3"><em>14:05</em><b>🏷️ Fiyat güncellendi</b><small>42 ürün · yeni fiyat listesi uygulandı</small></div>
+    <div class="note" style="left:60px;top:510px;z-index:4"><em>23:00</em><b>📊 Günün özeti</b><small>18 sipariş · 12.460 ₺ ciro · 2 iade</small></div>
   </div>
 </div>
 
