@@ -49,7 +49,7 @@ Kafe, berber, güzellik salonu, klinik, stüdyo, otel ya da küçük işletmeniz
 
 | | **Temel** | **Standart** | **Premium** |
 |---|---|---|---|
-| Fiyat | 750 TL | 1.500 TL | 2.750 TL |
+| Fiyat | 750 TL | 1.500 TL | 2.500 TL |
 | İçerik | Tek sayfa tanıtım sitesi + WhatsApp butonu | Temel + randevu/rezervasyon formu + alan adı bağlama + Google Haritalar | Standart + QR menü veya çok sayfalı site + temel SEO |
 | Revizyon | 1 | 2 | 3 |
 | Teslim | 2 gün | 3 gün | 5 gün |
